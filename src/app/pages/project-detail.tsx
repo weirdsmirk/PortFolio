@@ -48,12 +48,12 @@ export default function ProjectDetail() {
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: reduceMotion ? 0 : 0.8,
+        duration: reduceMotion ? 0 : 0.65,
         ease: EASE,
-        delay: reduceMotion ? 0 : 0.6,
+        delay: reduceMotion ? 0 : 0.15,
       }}
       className="mx-auto w-full px-6 py-24 md:px-12 md:py-36"
     >

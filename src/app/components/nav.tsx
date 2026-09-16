@@ -14,23 +14,40 @@ const links = [
 
 export function Nav() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(0);
+  const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
+
+  const isNavigating = useRef(false);
+  const scrollEndTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const { scrollY } = useScroll();
 
+  // --- hide/show on scroll with debounce ---
   useMotionValueEvent(scrollY, "change", (latest) => {
     const prev = lastScrollY.current;
     const diff = latest - prev;
 
-    setScrolled(latest > 24);
+    if (isNavigating.current) {
+      lastScrollY.current = latest;
+      return;
+    }
+
     if (latest <= 80) {
+      if (hideTimer.current) { clearTimeout(hideTimer.current); hideTimer.current = null; }
       setHidden(false);
-    } else if (diff > 8) {
-      setHidden(true);
-    } else if (diff < -8) {
+    } else if (diff > 20) {
+      // scrolling down — hide after a short cooldown to avoid flicker
+      if (!hideTimer.current) {
+        hideTimer.current = setTimeout(() => {
+          setHidden(true);
+          hideTimer.current = null;
+        }, 100);
+      }
+    } else if (diff < -12) {
+      // scrolling up — show immediately
+      if (hideTimer.current) { clearTimeout(hideTimer.current); hideTimer.current = null; }
       setHidden(false);
     }
 
@@ -38,10 +55,20 @@ export function Nav() {
   });
 
   useEffect(() => {
-    setScrolled(window.scrollY > 24);
     lastScrollY.current = window.scrollY;
+    return () => {
+      if (hideTimer.current) clearTimeout(hideTimer.current);
+      if (scrollEndTimer.current) clearTimeout(scrollEndTimer.current);
+    };
   }, []);
 
+  // --- close mobile menu on route change ---
+  useEffect(() => {
+    setOpen(false);
+    document.body.style.overflow = "";
+  }, [location.pathname, location.hash]);
+
+  // --- lock body scroll when mobile menu is open ---
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -58,6 +85,19 @@ export function Nav() {
     (href: string, e: React.MouseEvent) => {
       setOpen(false);
       document.body.style.overflow = "";
+
+      // Ensure navbar stays visible during programmatic navigation
+      if (hideTimer.current) {
+        clearTimeout(hideTimer.current);
+        hideTimer.current = null;
+      }
+      setHidden(false);
+      isNavigating.current = true;
+      if (scrollEndTimer.current) clearTimeout(scrollEndTimer.current);
+      scrollEndTimer.current = setTimeout(() => {
+        isNavigating.current = false;
+        lastScrollY.current = window.scrollY;
+      }, 800);
 
       if (location.pathname === "/") {
         if (href === "/" || href === "") {
@@ -98,19 +138,18 @@ export function Nav() {
         y: hidden && !open ? -80 : 0,
         opacity: 1,
       }}
-      transition={{ duration: 0.4, ease: EASE }}
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        scrolled || open
-          ? "border-b border-black/10 bg-white"
-          : "border-b border-transparent bg-transparent"
-      }`}
+      transition={{
+        duration: hidden && !open ? 0.25 : 0.45,
+        ease: EASE,
+      }}
+      className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-white"
     >
       <nav aria-label="Main navigation" className="relative mx-auto flex w-full items-center justify-between px-6 py-4 md:px-12">
         <div className="flex items-center gap-3 sm:gap-4">
           <Link
             to="/"
             onClick={(e) => handleNavClick("/", e)}
-            className="eyebrow hidden text-[10px] transition-opacity hover:opacity-70 sm:inline-block"
+            className="eyebrow text-[10px] transition-opacity hover:opacity-70"
           >
             PORTFOLIO — 2026
           </Link>
@@ -118,15 +157,15 @@ export function Nav() {
 
         <div className="hidden items-center gap-10 md:flex">
           {links.map((l) => (
-            <Link
-              key={l.href}
-              to={l.href}
-              onClick={(e) => handleNavClick(l.href, e)}
-              className="eyebrow group relative text-[10px] transition-colors hover:text-black"
-            >
-              {l.label}
-              <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100" />
-            </Link>
+              <Link
+                key={l.href}
+                to={l.href}
+                onClick={(e) => handleNavClick(l.href, e)}
+                className="eyebrow group relative text-[10px] transition-colors hover:text-black"
+              >
+                {l.label}
+                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100" />
+              </Link>
           ))}
         </div>
 
@@ -159,7 +198,7 @@ export function Nav() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: EASE }}
+            transition={{ duration: 0.35, ease: EASE }}
             id="mobile-navigation"
             className="overflow-hidden border-t border-black/10 md:hidden"
           >
@@ -167,26 +206,33 @@ export function Nav() {
               className="flex flex-col px-6 py-4"
               initial="hidden"
               animate="show"
-              variants={{ show: { transition: { staggerChildren: 0.06 } } }}
+              variants={{
+                show: {
+                  transition: {
+                    delayChildren: 0.1,
+                    staggerChildren: 0.07,
+                  },
+                },
+              }}
             >
               {links.map((l) => (
-                <motion.li
-                  key={l.href}
-                  variants={{
-                    hidden: { opacity: 0, x: -16 },
-                    show: { opacity: 1, x: 0 },
-                  }}
-                  transition={{ duration: 0.4, ease: EASE }}
-                >
-                  <Link
-                    to={l.href}
-                    onClick={(e) => handleNavClick(l.href, e)}
-                    className="flex items-center justify-between border-b border-black/5 py-4 font-serif text-[28px] leading-none tracking-tight"
+                  <motion.li
+                    key={l.href}
+                    variants={{
+                      hidden: { opacity: 0, x: -14 },
+                      show: { opacity: 1, x: 0 },
+                    }}
+                    transition={{ duration: 0.4, ease: EASE }}
                   >
-                    {l.label}
-                    <span className="eyebrow">→</span>
-                  </Link>
-                </motion.li>
+                    <Link
+                      to={l.href}
+                      onClick={(e) => handleNavClick(l.href, e)}
+                      className="flex items-center justify-between border-b border-black/5 py-4 font-serif text-[28px] leading-none tracking-tight"
+                    >
+                      {l.label}
+                      <span className="eyebrow">→</span>
+                    </Link>
+                  </motion.li>
               ))}
             </motion.ul>
           </motion.div>

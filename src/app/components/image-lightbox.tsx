@@ -1,7 +1,8 @@
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { ImageWithFallback } from "./ImageWithFallback";
+import { EASE } from "../constants";
 
 interface ImageLightboxProps {
   isOpen: boolean;
@@ -12,6 +13,24 @@ interface ImageLightboxProps {
   onNavigate: (index: number) => void;
 }
 
+const slideVariants = {
+  enter: (dir: number) => ({
+    opacity: 0,
+    x: dir > 0 ? 36 : dir < 0 ? -36 : 0,
+    scale: 0.98,
+  }),
+  center: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+  },
+  exit: (dir: number) => ({
+    opacity: 0,
+    x: dir > 0 ? -36 : dir < 0 ? 36 : 0,
+    scale: 0.98,
+  }),
+};
+
 export function ImageLightbox({
   isOpen,
   images,
@@ -20,16 +39,19 @@ export function ImageLightbox({
   onClose,
   onNavigate,
 }: ImageLightboxProps) {
+  const [direction, setDirection] = useState<number>(0);
   const hasMultiple = images.length > 1;
   const currentImage = images[currentIndex] || "";
 
   const handlePrev = useCallback(() => {
     if (!hasMultiple) return;
+    setDirection(-1);
     onNavigate((currentIndex - 1 + images.length) % images.length);
   }, [currentIndex, hasMultiple, images.length, onNavigate]);
 
   const handleNext = useCallback(() => {
     if (!hasMultiple) return;
+    setDirection(1);
     onNavigate((currentIndex + 1) % images.length);
   }, [currentIndex, hasMultiple, images.length, onNavigate]);
 
@@ -85,7 +107,7 @@ export function ImageLightbox({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.22, ease: "easeOut" }}
+          transition={{ duration: 0.28, ease: EASE }}
           onClick={onClose}
           className="fixed inset-0 z-[100] hidden md:flex items-center justify-center bg-black/94 backdrop-blur-md p-2 sm:p-4 select-none cursor-zoom-out"
           role="dialog"
@@ -147,10 +169,12 @@ export function ImageLightbox({
           {/* Main Image Container (Enlarged viewport capacity) */}
           <motion.div
             key={currentImage}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.3, ease: EASE }}
             onClick={(e) => e.stopPropagation()}
             className="relative flex max-h-[94vh] max-w-[96vw] items-center justify-center cursor-default"
           >

@@ -1,192 +1,101 @@
-# Armaan Verma — Portfolio
+# Armaan Verma — Portfolio (2026)
 
-A responsive personal portfolio for Armaan Verma, a Computer Science student and freelance developer/designer specialising in cybersecurity.
+A minimal, editorial-inspired portfolio website showcasing engineering projects, graphic design work, and cybersecurity focus.
 
-The site combines an editorial visual language with project case studies, a skills overview, contact links, a résumé download, and a small music player. It is a client-side React application built with Vite and TypeScript.
+🔗 **Live Site:** [portfolio-lime-seven-beeqbtvrcz.vercel.app](https://portfolio-lime-seven-beeqbtvrcz.vercel.app)
 
-## Features
+---
 
-- Responsive portfolio homepage with hero, about, work, skills, and contact sections
-- Image-based project grid with dedicated case-study pages
-- Animated reveals and staggered content using Motion
-- Responsive navigation with anchor links
-- Résumé download, email, and social contact links
-- Optional music player
-- Reduced-motion support
-- Image fallback component for failed or missing images
+## ✨ Features
 
-## Tech stack
+- **Editorial Aesthetic:** High-contrast typography featuring *Instrument Serif* paired with clean utility layouts.
+- **Interactive Lightbox:** Full-screen desktop image previews for design posters and project galleries.
+- **Project Case Studies:** Dedicated pages for deep-dives into engineering and design works.
+- **Fluid Motion:** Smooth page transitions, staggered reveal animations, and initial numeric loader powered by Motion.
+- **Ambient Audio:** Built-in minimal background music player.
+- **Responsive & Accessible:** Fully responsive across devices with support for prefers-reduced-motion.
 
-- React 18
-- TypeScript
-- Vite
-- Tailwind CSS v4
-- Motion
-- React Router
-- Lucide React
+---
 
-## Requirements
+## 🛠️ Tech Stack
 
-- Node.js 18 or newer
-- npm
+- **Framework:** [React 18](https://react.dev/)
+- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animation:** [Motion](https://motion.dev/)
+- **Routing:** [React Router 7](https://reactrouter.com/)
+- **Icons:** [Lucide React](https://lucide.dev/)
 
-## Getting started
+---
 
-~~~bash
-git clone <repository-url>
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** (v18.18 or higher)
+- **npm**
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/weirdpink/portfolio.git
 cd portfolio
+
+# Install dependencies
 npm install
+
+# Start development server
 npm run dev
-~~~
+```
 
-Vite will print the local development URL, usually http://localhost:5173.
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## Available scripts
+---
+
+## 📦 Available Scripts
 
 | Command | Description |
-| --- | --- |
-| npm run dev | Start the Vite development server |
-| npm run build | Type-check and create a production build in dist/ |
-| npm run preview | Serve the production build locally |
-| npm run lint | Run TypeScript’s no-emit validation |
-| npm run check:assets | Verify every code-referenced static asset exists under public/ |
-| npm run check | Run type, asset, and production-build checks |
+| :--- | :--- |
+| `npm run dev` | Starts the Vite development server with Hot Module Replacement |
+| `npm run build` | Compiles TypeScript and creates an optimized production build in `dist/` |
+| `npm run preview` | Previews the production build locally |
+| `npm run check` | Runs TypeScript linting, static asset checks, and build verification |
 
-Before opening a pull request:
+---
 
-~~~bash
-npm run check
-~~~
+## 📁 Project Structure
 
-## Project structure
-
-~~~text
-.
-├── public/                    # Static images, audio, résumé, and other assets
-│   ├── branding/
-│   ├── engineering/
-│   ├── logos/
-│   ├── posters/
-│   ├── resume.pdf
-│   └── For the First Time.mp3
+```text
+├── public/                 # Static assets (images, posters, audio, resume.pdf)
 ├── src/
 │   ├── app/
-│   │   ├── components/        # Reusable page sections and UI components
-│   │   ├── pages/             # Home, project detail, and not-found pages
-│   │   ├── constants.ts       # Shared animation constants
-│   │   ├── data.ts            # Portfolio content and project data
-│   │   └── App.tsx            # Application shell and routes
-│   ├── styles/
-│   │   ├── fonts.css          # Local font declarations
-│   │   ├── index.css          # Global style entry point
-│   │   ├── tailwind.css       # Tailwind layers
-│   │   └── theme.css          # Design tokens and base styles
-│   └── main.tsx               # React entry point
-├── index.html
-├── package.json
-└── vite.config.ts
-~~~
+│   │   ├── components/     # UI sections (Hero, Work, About, Skills, Contact, Nav)
+│   │   ├── pages/          # Home, Project Detail, Terms, Privacy, Colophon
+│   │   ├── App.tsx         # Routing, layout, and scroll restoration
+│   │   └── data.ts         # Central data store (projects, skills, social links)
+│   ├── styles/             # Global CSS and Tailwind layers
+│   └── main.tsx            # Application entry point
+```
 
-## Updating portfolio content
+---
 
-Most content is centralized in src/app/data.ts. Edit it to update project titles, descriptions, categories, years, roles, cover images, galleries, case-study text, skills, résumé path, music, and contact links.
+## ⚙️ Content Configuration
 
-### Adding a project
+All portfolio content is organized in a single file: **[`src/app/data.ts`](src/app/data.ts)**:
 
-Add a new object to the projects array:
+- **Projects:** Add or edit project metadata, covers, case-study overviews, and galleries.
+- **Skills:** Configure skill groups and technical domains.
+- **Contact & Socials:** Update links for GitHub, LinkedIn, Instagram, X, and Email.
+- **Audio & Resume:** Set background audio track metadata and resume download path.
 
-~~~ts
-{
-  id: "p-new-project",
-  title: "Project title",
-  description: "Short description for the project card.",
-  category: "Website",
-  discipline: "Engineering",
-  tools: ["React", "TypeScript"],
-  cover: "/engineering/new-project-cover.jpg",
-  gallery: ["/engineering/new-project-cover.jpg"],
-  caseStudy: "/project/p-new-project",
-  year: "2026",
-  role: "Frontend Engineer",
-  overview: "Longer case-study overview.",
-  features: ["Feature one", "Feature two"],
-}
-~~~
+---
 
-Place referenced files inside public/. For example, public/engineering/new-project-cover.jpg is referenced as /engineering/new-project-cover.jpg.
+## 👤 Author
 
-Project detail pages are handled by src/app/pages/project-detail.tsx and look up projects by id.
-
-## Styling and design tokens
-
-Global colors, typography, and base styles live in src/styles/theme.css. The current visual system uses:
-
-- White and light-gray surfaces with an editorial layout
-- Serif display typography and sans-serif utility text
-- Thin borders and generous whitespace
-- Black as the primary ink color
-- #C5C5C5 for the Skills, Contact, and Footer region
-
-Section-level layout and responsive behavior are defined in src/app/components/. Prefer editing the closest component instead of adding one-off global rules.
-
-## Routing
-
-Routes are defined in src/app/App.tsx:
-
-- / — Home page
-- /project/:id — Project case study
-- Any other path — Not-found page
-
-The app preserves the home-page scroll position when returning from a case-study page.
-
-## Assets
-
-Static assets belong in public/ and should use root-relative paths:
-
-~~~tsx
-<img src="/branding/brand-1.jpg" alt="Brand identity project" />
-~~~
-
-Use meaningful alt text for new images. Use ImageWithFallback when a visual needs a fallback state.
-
-The résumé should remain at public/resume.pdf unless resumeUrl in src/app/data.ts is updated.
-
-## Accessibility and motion
-
-- Keep descriptive alt text on meaningful images.
-- Preserve visible keyboard focus states.
-- Preserve prefers-reduced-motion behavior.
-- Use semantic headings and links when adding sections.
-- Check text and control contrast against the current background.
-
-## Production build and deployment
-
-Create a production build with npm run build. The generated site is written to dist/. Preview it with npm run preview.
-
-The site can be deployed to static hosting such as Vercel, Netlify, Cloudflare Pages, or GitHub Pages. Configure the host to fall back to index.html for client-side routes such as /project/p-posters.
-
-`public/_headers` and `public/_redirects` provide browser security headers and an SPA fallback for Netlify and Cloudflare Pages. For other hosts, configure their equivalent headers and SPA rewrite rule before launch. Enable HSTS at the host only after the final domain is fully HTTPS.
-
-## Troubleshooting
-
-### Images are not loading
-
-Confirm that the file exists under public/ and that the code uses a root-relative path beginning with /. Paths are case-sensitive on many production hosts.
-
-### A project page is missing
-
-Check that the project’s caseStudy path matches its id and that the project object exists in src/app/data.ts.
-
-### The layout looks stale
-
-Restart the Vite server after changing configuration or dependencies:
-
-~~~bash
-npm run dev
-~~~
-
-Also hard-refresh the browser if an old asset bundle is cached.
-
-## License and attribution
-
-Project-specific attribution information is recorded in ATTRIBUTIONS.md. Update that file when adding third-party assets or adapting external work.
+**Armaan Verma**
+- Website: [portfolio-lime-seven-beeqbtvrcz.vercel.app](https://portfolio-lime-seven-beeqbtvrcz.vercel.app)
+- GitHub: [@weirdpink](https://github.com/weirdpink)
+- LinkedIn: [armaantxs](https://linkedin.com/in/armaantxs)
+- X: [@armaantxs](https://x.com/armaantxs)

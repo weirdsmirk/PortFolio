@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { projects } from "../data";
+import { EASE, EASE_IN_OUT } from "../constants";
 
 // Helper to collect images based on route
 export function getImagesForRoute(pathname: string): string[] {
@@ -134,23 +135,22 @@ export function NumericLoader({ pathname }: NumericLoaderProps) {
         <motion.div
           key={isInitial ? "initial-loader" : "page-loader"}
           initial={false}
-          animate={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={
             isInitial
               ? {
-                  opacity: 1,
                   y: "-100%",
                   transition: {
-                    duration: reduceMotion ? 0 : 0.45,
-                    ease: [0.76, 0, 0.24, 1],
+                    duration: reduceMotion ? 0 : 0.55,
+                    ease: EASE_IN_OUT,
                   },
                 }
               : {
                   opacity: 0,
-                  y: 0,
+                  scale: 0.98,
                   transition: {
-                    duration: reduceMotion ? 0 : 0.45,
-                    ease: [0.22, 1, 0.36, 1],
+                    duration: reduceMotion ? 0 : 0.4,
+                    ease: EASE,
                   },
                 }
           }
@@ -176,7 +176,7 @@ export function NumericLoader({ pathname }: NumericLoaderProps) {
                 {/* Loading bar */}
                 <div className="h-[2px] w-full max-w-xs bg-black/10 overflow-hidden relative">
                   <div
-                    className="h-full w-full bg-neutral-950 origin-left"
+                    className="h-full w-full bg-neutral-950 origin-left transition-transform duration-100 ease-out"
                     style={{ transform: `scaleX(${pageProgress / 100})` }}
                   />
                 </div>

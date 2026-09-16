@@ -68,8 +68,9 @@ function SkillRadar({ items }: { items: { label: string; href: string; level: nu
         stroke="#0a0a0a"
         strokeWidth={1.5}
         initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 1.1, ease: EASE }}
+        whileInView={{ pathLength: 1, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.9, ease: EASE }}
       />
 
       {tips.map((p, i) => (
@@ -79,9 +80,10 @@ function SkillRadar({ items }: { items: { label: string; href: string; level: nu
           cy={p.y}
           r={4}
           fill="#0a0a0a"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.15 + i * 0.06, duration: 0.4, ease: EASE }}
+          initial={{ opacity: 0, scale: 0 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.12 + i * 0.05, duration: 0.35, ease: EASE }}
         />
       ))}
 
@@ -102,8 +104,9 @@ function SkillRadar({ items }: { items: { label: string; href: string; level: nu
             className="font-serif italic tracking-tight text-neutral-950"
             style={{ fontSize: 26 }}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.25 + i * 0.06, duration: 0.5, ease: EASE }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 + i * 0.05, duration: 0.45, ease: EASE }}
           >
             {it.label}
             <tspan className="font-sans not-italic tabular-nums text-neutral-400">
@@ -160,9 +163,9 @@ export function Skills() {
 
         <motion.div
           key={active}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: EASE }}
+          initial={{ opacity: 0, y: 16, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.45, ease: EASE }}
           className="grid items-center gap-12 md:grid-cols-[1.15fr_1fr] md:gap-10"
         >
           <SkillRadar items={skillGroups[active].items} />

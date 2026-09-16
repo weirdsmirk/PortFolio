@@ -11,12 +11,12 @@ const email = contactLinks.find((c) => c.label === "Email");
 
 const rowContainer = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
+  show: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
 };
 
 const rowItem = {
-  hidden: { opacity: 0, scale: 0.8 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: EASE } },
+  hidden: { opacity: 0, y: 14, scale: 0.94 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.55, ease: EASE } },
 };
 
 function XIcon({ size = 17, className = "" }: { size?: number | string; className?: string }) {

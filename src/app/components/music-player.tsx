@@ -63,9 +63,9 @@ export function MusicPlayer() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: EASE, delay: 0.4 }}
+      transition={{ duration: 0.8, ease: EASE, delay: 0.6 }}
       className="absolute right-6 bottom-6 z-30 flex flex-col items-end gap-1.5 text-right md:right-12 md:bottom-8"
     >
         <div className="flex items-center gap-4">

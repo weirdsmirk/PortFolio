@@ -7,16 +7,16 @@ let heroMounted = false;
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
+  show: { transition: { staggerChildren: 0.14, delayChildren: 0.08 } },
 };
 
 const line = {
-  hidden: { opacity: 0, y: 36, rotate: 1 },
+  hidden: { opacity: 0, y: 44, rotate: 0.5 },
   show: {
     opacity: 1,
     y: 0,
     rotate: 0,
-    transition: { duration: 0.6, ease: EASE },
+    transition: { duration: 0.75, ease: EASE },
   },
 };
 

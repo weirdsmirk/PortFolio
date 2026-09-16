@@ -6,7 +6,7 @@ import { readSession } from "../browser";
 export function Reveal({
   children,
   delay = 0,
-  y = 28,
+  y = 24,
   className,
   as = "div",
 }: {
@@ -24,9 +24,9 @@ export function Reveal({
       className={className}
       initial={isReturning ? { opacity: 1, y: 0 } : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={{
-        duration: isReturning ? 0 : 0.8,
+        duration: isReturning ? 0 : 0.7,
         ease: EASE,
         delay: isReturning ? 0 : delay,
       }}
@@ -39,12 +39,12 @@ export function Reveal({
 export const containerVariants: Variants = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.05 },
+    transition: { staggerChildren: 0.09, delayChildren: 0.06 },
   },
 };
 
 export const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 16 },
   show: {
     opacity: 1,
     y: 0,
