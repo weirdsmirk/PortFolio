@@ -51,10 +51,7 @@ function SkillRow({
               variants={rowItem}
               className="inline-flex items-baseline"
             >
-              <span
-                data-cursor="hover"
-                className="text-[clamp(1.6rem,3.5vw,2.75rem)] font-serif tracking-tight text-neutral-950 transition-colors duration-300 hover:text-neutral-400"
-              >
+              <span className="text-[clamp(1.6rem,3.5vw,2.75rem)] font-serif tracking-tight text-neutral-950 transition-colors duration-300 hover:text-neutral-400">
                 {item.label}
               </span>
               {i < items.length - 1 && (

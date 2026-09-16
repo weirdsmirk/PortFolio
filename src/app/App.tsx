@@ -1,7 +1,6 @@
 import { useLayoutEffect, useEffect, useRef } from "react";
 import { Routes, Route, useLocation } from "react-router";
 import { LayoutGroup } from "motion/react";
-import { Cursor } from "./components/cursor";
 import { Nav } from "./components/nav";
 import { ErrorBoundary } from "./components/error-boundary";
 import { NumericLoader } from "./components/numeric-loader";
@@ -105,7 +104,6 @@ export default function App() {
         <div className="flex min-h-screen w-full flex-col bg-white text-neutral-950 transition-colors duration-300">
           <NumericLoader pathname={location.pathname} />
           <ScrollToTop />
-          <Cursor />
           <Nav />
           <main id="main-content" tabIndex={-1} className="flex flex-1 flex-col">
             <Routes>
