@@ -74,7 +74,7 @@ export default function ProjectDetail() {
           </Link>
         </div>
 
-        <h1 className="font-serif text-[clamp(2.75rem,7.5vw,6rem)] leading-[0.98] tracking-tight text-neutral-950">
+        <h1 className="italic-serif text-[clamp(2.75rem,7.5vw,6rem)] leading-[0.98] tracking-tight text-neutral-950">
           {project.title}
         </h1>
 

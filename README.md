@@ -98,4 +98,3 @@ All portfolio content is organized in a single file: **[`src/app/data.ts`](src/a
 - Website: [portfolio-lime-seven-beeqbtvrcz.vercel.app](https://portfolio-lime-seven-beeqbtvrcz.vercel.app)
 - GitHub: [@weirdpink](https://github.com/weirdpink)
 - LinkedIn: [armaantxs](https://linkedin.com/in/armaantxs)
-- X: [@armaantxs](https://x.com/armaantxs)

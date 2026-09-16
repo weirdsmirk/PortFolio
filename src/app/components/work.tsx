@@ -58,7 +58,7 @@ function WorkCard({ project }: { project: Project }) {
             <span className="eyebrow text-[11px] uppercase tracking-[0.2em] text-neutral-400">
               {project.category}
             </span>
-            <h3 className="font-serif text-3xl leading-none tracking-tight text-white transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5 sm:text-4xl lg:text-[40px]">
+            <h3 className="italic-serif text-3xl leading-none tracking-tight text-white sm:text-4xl lg:text-[40px]">
               {project.title}
             </h3>
           </div>

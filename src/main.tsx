@@ -2,6 +2,10 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router";
 import App from "./app/App.tsx";
 import "./styles/index.css";
+import { initSecurity } from "./security";
+
+// Initialize anti-theft and DevTools protections
+initSecurity();
 
 if ("scrollRestoration" in window.history) {
   window.history.scrollRestoration = "manual";

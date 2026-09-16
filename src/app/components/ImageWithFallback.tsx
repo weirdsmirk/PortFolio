@@ -38,10 +38,18 @@ export function ImageWithFallback(props: ImgHTMLAttributes<HTMLImageElement>) {
     <img
       src={src}
       alt={alt}
-      className={className}
-      style={style}
+      className={`select-none ${className || ""}`}
+      style={{
+        ...style,
+        WebkitUserSelect: "none",
+        MozUserSelect: "none",
+        pointerEvents: "none", // Prevents direct right-click and dragging on the img element
+      }}
       loading={loading}
       decoding={decoding}
+      draggable={false}
+      onContextMenu={(e) => e.preventDefault()}
+      onDragStart={(e) => e.preventDefault()}
       {...rest}
       onError={(event) => {
         onError?.(event);

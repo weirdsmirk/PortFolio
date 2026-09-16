@@ -218,3 +218,6 @@
     }
   }
 }
+img.select-none {
+  -webkit-user-drag: none;
+}

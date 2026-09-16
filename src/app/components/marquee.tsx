@@ -19,7 +19,7 @@ export function Marquee() {
   return (
     <div
       aria-hidden
-      className="mt-20 overflow-hidden whitespace-nowrap border-y border-white/15 bg-neutral-950 py-10 text-white md:mt-24 md:py-14"
+      className="mt-20 overflow-hidden whitespace-nowrap border-y border-white/15 bg-[#171717] py-10 text-white md:mt-24 md:py-14"
     >
       <div className="marquee-track flex w-max shrink-0 items-center text-[clamp(3.5rem,7vw,6.5rem)] font-bold leading-none tracking-tight">
         {Array.from({ length: 2 }).map((_, copy) => (
