@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams, Link } from "react-router";
 import { ArrowLeft, ArrowUpRight, CheckCircle2, Maximize2 } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { projects } from "../data";
@@ -10,28 +10,24 @@ import { EASE } from "../constants";
 
 export default function ProjectDetail() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const reduceMotion = useReducedMotion();
   const project = projects.find((p) => p.id === id);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const handleBack = () => {
-    writeSession("returningFromProject", "true");
-    navigate("/");
-  };
+  const backToHome = () => writeSession("returningFromProject", "true");
 
   if (!project) {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
         <h1 className="font-serif text-5xl md:text-7xl mb-6">Not Found</h1>
         <p className="mb-10 text-neutral-500">The project you are looking for does not exist.</p>
-        <button
-          type="button"
-          onClick={handleBack}
+        <Link
+          to="/"
+          onClick={backToHome}
           className="eyebrow group inline-flex h-12 items-center justify-center rounded-full border border-black/15 px-8 text-black transition-all hover:bg-black hover:text-white"
         >
           Return to Work
-        </button>
+        </Link>
       </div>
     );
   }
@@ -63,21 +59,19 @@ export default function ProjectDetail() {
     >
       {/* Top Navigation & Header */}
       <div className="mb-12 md:mb-16">
-        <button
-          type="button"
-          onClick={handleBack}
-          className="eyebrow group mb-8 inline-flex h-11 items-center justify-center gap-2 rounded-full border border-black/15 px-5 text-black transition-all hover:bg-black hover:text-white"
-        >
-          <ArrowLeft size={15} className="transition-transform duration-300 group-hover:-translate-x-1" />
-          Back to Work
-        </button>
-
-        <div className="flex flex-wrap items-center gap-2.5 eyebrow text-neutral-500 mb-3 font-mono text-[11px]">
-          <span>{project.discipline.toUpperCase()}</span>
-          <span>•</span>
-          <span>{project.category.toUpperCase()}</span>
-          <span>•</span>
-          <span>{project.year}</span>
+        <div className="mb-12 flex items-center justify-between border-b border-black/10 pb-6">
+          <span className="eyebrow">Case Study</span>
+          <Link
+            to="/"
+            onClick={backToHome}
+            className="group flex items-center gap-2 eyebrow transition-colors hover:text-black"
+          >
+            <ArrowLeft
+              size={14}
+              className="transition-transform duration-300 group-hover:-translate-x-0.5"
+            />
+            Back
+          </Link>
         </div>
 
         <h1 className="font-serif text-[clamp(2.75rem,7.5vw,6rem)] leading-[0.98] tracking-tight text-neutral-950">
@@ -235,9 +229,8 @@ export default function ProjectDetail() {
                   width={1400}
                   height={788}
                 />
-                <div className="pointer-events-none absolute bottom-4 right-4 hidden md:flex items-center gap-2 rounded-full bg-black/60 px-3.5 py-1.5 text-xs text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 md:group-hover:opacity-100">
-                  <Maximize2 size={13} />
-                  <span className="font-mono text-[11px] tracking-wider uppercase">Full Screen</span>
+                <div className="pointer-events-none absolute bottom-4 right-4 hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 md:group-hover:opacity-100">
+                  <Maximize2 size={14} />
                 </div>
               </div>
             ) : (
@@ -313,14 +306,14 @@ export default function ProjectDetail() {
 
       {/* Footer Navigation */}
       <div className="border-t border-black/10 pt-10 flex justify-between items-center max-w-3xl mx-auto">
-        <button
-          type="button"
-          onClick={handleBack}
+        <Link
+          to="/"
+          onClick={backToHome}
           className="eyebrow group inline-flex items-center gap-2 text-black transition-opacity hover:opacity-70"
         >
           <ArrowLeft size={15} className="transition-transform duration-300 group-hover:-translate-x-1" />
           Back to all work
-        </button>
+        </Link>
         <span className="eyebrow text-neutral-400 font-mono">PORTFOLIO — 2026</span>
       </div>
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { projects } from "../data";
 
@@ -39,7 +39,8 @@ export function NumericLoader({ pathname }: NumericLoaderProps) {
     };
   }, [loading]);
 
-  useEffect(() => {
+  // Layout effect so the loader mounts before the newly navigated page paints
+  useLayoutEffect(() => {
     let rafId = 0;
     let timer: number | undefined;
 
@@ -106,6 +107,7 @@ export function NumericLoader({ pathname }: NumericLoaderProps) {
 
     if (isFirstMount.current) {
       isFirstMount.current = false;
+      prevPathname.current = pathname;
       if (pathname.startsWith("/project/")) {
         setIsInitial(false);
         startPageLoading(pathname);
@@ -114,15 +116,7 @@ export function NumericLoader({ pathname }: NumericLoaderProps) {
         startInitialLoading();
       }
     } else if (prevPathname.current !== pathname) {
-      const returningHome = pathname === "/" && prevPathname.current.startsWith("/project/");
       prevPathname.current = pathname;
-      if (returningHome) {
-        setLoading(false);
-        setPageProgress(0);
-        return;
-      }
-
-      // Smooth loader when opening a project page
       setIsInitial(false);
       startPageLoading(pathname);
     }

@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { ArrowRight, ArrowUpRight, Github, Linkedin, Instagram, Mail } from "lucide-react";
 import { Reveal } from "./reveal";
 import { motion } from "motion/react";
 import { contactLinks, resumeUrl } from "../data";
 import { EASE } from "../constants";
 import { Footer } from "./footer";
+import { SocialModal } from "./social-modal";
 
 const email = contactLinks.find((c) => c.label === "Email");
 
@@ -41,10 +43,15 @@ const IconMap: Record<string, React.ComponentType<{ size?: number | string; clas
   X: XIcon,
 };
 
+const modalSocials = ["Instagram", "X"];
+
 export function Contact() {
+  const [notice, setNotice] = useState<(typeof contactLinks)[number] | null>(null);
+
   return (
-    <section id="contact" tabIndex={-1} className="bg-white scroll-mt-20 md:scroll-mt-24">
-      <div className="mx-auto w-full px-6 pt-12 pb-6 md:px-12 md:pt-16 md:pb-8">
+    <>
+      <section id="contact" tabIndex={-1} className="bg-white scroll-mt-20 md:scroll-mt-24">
+      <div className="mx-auto w-full px-6 pt-12 pb-32 md:px-12 md:pt-16 md:pb-40">
         <Reveal delay={0.05} y={40}>
           <h2 className="mt-10 md:mt-12 font-serif text-[clamp(4rem,12vw,11rem)] leading-[1.02] tracking-tight">
               <span className="inline-block">
@@ -65,32 +72,7 @@ export function Contact() {
           </h2>
         </Reveal>
 
-        <div className="mt-12 flex flex-col gap-10 md:mt-16 md:flex-row md:items-start md:justify-between">
-          <motion.ul
-            className="flex flex-wrap justify-start gap-4"
-            variants={rowContainer}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
-          >
-            {contactLinks.filter(c => c.href !== "#").map((c) => {
-              const external = !c.href.startsWith("mailto:");
-              const Icon = IconMap[c.label as keyof typeof IconMap];
-              return (
-                <motion.li key={c.label} variants={rowItem}>
-                  <a
-                    href={c.href}
-                    aria-label={c.label}
-                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="flex h-14 w-14 items-center justify-center rounded-full border border-black/15 text-black transition-all hover:bg-black hover:text-white"
-                  >
-                    {Icon && <Icon size={20} />}
-                  </a>
-                </motion.li>
-              );
-            })}
-          </motion.ul>
-
+        <div className="mt-12 flex flex-col gap-10 md:mt-16 md:flex-row md:items-center md:gap-8">
           <Reveal delay={0.15} y={24}>
             <a
               href={resumeUrl}
@@ -106,10 +88,55 @@ export function Contact() {
               />
             </a>
           </Reveal>
+
+          <motion.ul
+            className="flex flex-wrap gap-4"
+            variants={rowContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+          >
+            {contactLinks.filter(c => c.href !== "#").map((c) => {
+              const external = !c.href.startsWith("mailto:");
+              const Icon = IconMap[c.label as keyof typeof IconMap];
+              const modal = modalSocials.includes(c.label);
+              return (
+                <motion.li key={c.label} variants={rowItem}>
+                  {modal ? (
+                    <button
+                      type="button"
+                      onClick={() => setNotice(c)}
+                      aria-label={c.label}
+                      aria-haspopup="dialog"
+                      className="flex h-14 w-14 items-center justify-center rounded-full border border-black/15 text-black transition-all hover:bg-black hover:text-white cursor-pointer"
+                    >
+                      {Icon && <Icon size={20} />}
+                    </button>
+                  ) : (
+                    <a
+                      href={c.href}
+                      aria-label={c.label}
+                      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      className="flex h-14 w-14 items-center justify-center rounded-full border border-black/15 text-black transition-all hover:bg-black hover:text-white"
+                    >
+                      {Icon && <Icon size={20} />}
+                    </a>
+                  )}
+                </motion.li>
+              );
+            })}
+</motion.ul>
         </div>
       </div>
 
       <Footer />
-    </section>
+      </section>
+
+      <SocialModal
+        isOpen={notice !== null}
+        label={notice?.label ?? ""}
+        onClose={() => setNotice(null)}
+      />
+    </>
   );
 }

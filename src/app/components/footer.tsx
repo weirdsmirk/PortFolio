@@ -1,4 +1,11 @@
+import { Link } from "react-router";
 import { ArrowUp } from "lucide-react";
+
+const legalLinks = [
+  { label: "Terms", href: "/terms" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Colophon", href: "/colophon" },
+];
 
 export function Footer() {
   const scrollTop = () => {
@@ -20,6 +27,22 @@ export function Footer() {
           </div>
 
           <div className="flex items-center gap-8">
+            <span className="hidden h-4 w-px bg-black/15 md:block" />
+
+            <nav className="flex items-center gap-6">
+              {legalLinks.map((l) => (
+                <Link
+                  key={l.label}
+                  to={l.href}
+                  className="eyebrow transition-colors hover:text-black"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+
+            <span className="hidden h-4 w-px bg-black/15 md:block" />
+
             <button
               type="button"
               onClick={scrollTop}

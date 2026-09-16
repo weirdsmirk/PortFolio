@@ -8,6 +8,9 @@ import { readSession, removeSession, writeSession } from "./browser";
 import Home from "./pages/home";
 import ProjectDetail from "./pages/project-detail";
 import NotFound from "./pages/not-found";
+import Terms from "./pages/terms";
+import Privacy from "./pages/privacy";
+import Colophon from "./pages/colophon";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -82,6 +85,8 @@ function ScrollToTop() {
       } else {
         scrollTo(0);
       }
+    } else {
+      scrollTo(0);
     }
 
     prevPathname.current = pathname;
@@ -109,6 +114,9 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/project/:id" element={<ProjectDetail />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/colophon" element={<Colophon />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

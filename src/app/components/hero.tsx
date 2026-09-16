@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { EASE } from "../constants";
-import { readSession } from "../browser";
 import { MusicPlayer } from "./music-player";
+
+let heroMounted = false;
 
 const container = {
   hidden: {},
@@ -21,11 +22,14 @@ const line = {
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
-  const returning = readSession("returningFromProject") === "true";
-  const [intro, setIntro] = useState(false);
+  const [intro, setIntro] = useState(() => {
+    const isReturning = heroMounted;
+    heroMounted = true;
+    return isReturning;
+  });
 
   useEffect(() => {
-    if (returning || reduceMotion) {
+    if (intro || reduceMotion) {
       setIntro(true);
       return;
     }
@@ -36,7 +40,7 @@ export function Hero() {
       window.removeEventListener("hero-intro", onIntro);
       window.clearTimeout(fallback);
     };
-  }, [returning, reduceMotion]);
+  }, [intro, reduceMotion]);
 
   return (
     <section

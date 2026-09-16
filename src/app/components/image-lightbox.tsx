@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { ImageWithFallback } from "./ImageWithFallback";
 
 interface ImageLightboxProps {
@@ -111,17 +111,21 @@ export function ImageLightbox({
               )}
             </div>
 
-            {/* Native App Style Close Button */}
+            {/* Close Button */}
             <button
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 onClose();
               }}
-              className="pointer-events-auto relative flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/25 text-white transition-all duration-300 hover:bg-white hover:text-black hover:border-white active:scale-95 cursor-pointer shadow-lg"
+              className="pointer-events-auto relative flex items-center gap-2 eyebrow !text-white transition-colors hover:text-neutral-400 cursor-pointer"
               aria-label="Close preview"
             >
-              <X size={18} strokeWidth={1.5} />
+              <ArrowLeft
+                size={14}
+                className="transition-transform duration-300 group-hover:-translate-x-0.5"
+              />
+              Close
             </button>
           </div>
 

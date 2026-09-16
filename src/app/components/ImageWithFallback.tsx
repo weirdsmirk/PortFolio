@@ -1,8 +1,5 @@
 import { useState, type ImgHTMLAttributes } from "react";
 
-const ERROR_IMG_SRC =
-  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODgiIGhlaWdodD0iODgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBvcGFjaXR5PSIuMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIzLjciPjxyZWN0IHg9IjE2IiB5PSIxNiIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2IiByeD0iNiIvPjxwYXRoIGQ9Im0xNiA1OCAxNi0xOCAzMiAzMiIvPjxjaXJjbGUgY3g9IjUzIiBjeT0iMzUiIHI9IjciLz48L3N2Zz4='
-
 export function ImageWithFallback(props: ImgHTMLAttributes<HTMLImageElement>) {
   const [didError, setDidError] = useState(false);
 
@@ -20,20 +17,18 @@ export function ImageWithFallback(props: ImgHTMLAttributes<HTMLImageElement>) {
   if (didError) {
     return (
       <div
-        className={`inline-block align-middle bg-neutral-100 text-center ${className ?? ""}`}
+        className={`relative flex h-full w-full items-center justify-center overflow-hidden bg-neutral-950 text-center ${className ?? ""}`}
         style={style}
         role={alt ? "img" : undefined}
         aria-label={alt || undefined}
+        {...rest}
+        data-original-url={src}
       >
-        <div className="flex h-full w-full items-center justify-center">
-          <img
-            src={ERROR_IMG_SRC}
-            alt=""
-            {...rest}
-            data-original-url={src}
-            loading="lazy"
-            decoding="async"
-          />
+        <div className="pointer-events-none flex max-w-full flex-col items-center gap-4 px-6 py-10">
+          <span className="eyebrow !text-white/40">Image not uploaded</span>
+          <span className="italic-serif text-[clamp(1.5rem,5vw,2.75rem)] leading-[1.08] tracking-tight text-white">
+            {alt || "Uploading soon."}
+          </span>
         </div>
       </div>
     );

@@ -145,37 +145,43 @@ export const projects: Project[] = [
 export type SkillItem = {
   label: string;
   href: string;
+  level: number;
 };
 
 export const skillGroups: { title: string; items: SkillItem[] }[] = [
   {
     title: "Technical",
     items: [
-      { label: "Python", href: "https://www.python.org/" },
-      { label: "Java", href: "https://www.java.com/" },
-      { label: "C++", href: "https://cplusplus.com/" },
-      { label: "HTML", href: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
-      { label: "CSS", href: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
+      { label: "Python", href: "https://www.python.org/", level: 8 },
+      { label: "Java", href: "https://www.java.com/", level: 7 },
+      { label: "C++", href: "https://cplusplus.com/", level: 8 },
+      { label: "HTML", href: "https://developer.mozilla.org/en-US/docs/Web/HTML", level: 9 },
+      { label: "CSS", href: "https://developer.mozilla.org/en-US/docs/Web/CSS", level: 9 },
+      { label: "MySQL", href: "https://www.mysql.com/", level: 7 },
+      { label: "Firebase", href: "https://firebase.google.com/", level: 6 },
+      { label: "Supabase", href: "https://supabase.com/", level: 5 },
     ],
   },
   {
     title: "Design",
     items: [
-      { label: "Adobe Photoshop", href: "https://www.adobe.com/products/photoshop.html" },
-      { label: "Adobe Illustrator", href: "https://www.adobe.com/products/illustrator.html" },
-      { label: "Affinity", href: "https://affinity.serif.com/en-us/" },
+      { label: "Adobe Photoshop", href: "https://www.adobe.com/products/photoshop.html", level: 10 },
+      { label: "Adobe Illustrator", href: "https://www.adobe.com/products/illustrator.html", level: 7 },
+      { label: "Affinity", href: "https://affinity.serif.com/en-us/", level: 7 },
+      { label: "Figma", href: "https://www.figma.com/", level: 9 },
+      { label: "Framer", href: "https://www.framer.com/", level: 8 },
     ],
   },
   {
     title: "Productivity",
     items: [
-      { label: "VS Code", href: "https://code.visualstudio.com/" },
-      { label: "Zed", href: "https://zed.dev/" },
-      { label: "Warp", href: "https://warp.dev/" },
-      { label: "Notion", href: "https://www.notion.so/" },
-      { label: "Claude Code", href: "https://docs.anthropic.com/en/docs/claude-code/overview" },
-      { label: "Opencode", href: "https://opencode.ai/" },
-      { label: "Antigravity", href: "https://antigravity.app/" },
+      { label: "VS Code", href: "https://code.visualstudio.com/", level: 8 },
+      { label: "Zed", href: "https://zed.dev/", level: 8 },
+      { label: "Warp", href: "https://warp.dev/", level: 7 },
+      { label: "Notion", href: "https://www.notion.so/", level: 7 },
+      { label: "Claude Code", href: "https://docs.anthropic.com/en/docs/claude-code/overview", level: 7 },
+      { label: "Opencode", href: "https://opencode.ai/", level: 8 },
+      { label: "Antigravity", href: "https://antigravity.app/", level: 9 },
     ],
   },
 ];
@@ -189,7 +195,7 @@ export const music = {
 
 export const contactLinks: { label: string; value: string; href: string }[] = [
   { label: "Email", value: "worksarmaan@gmail.com", href: "mailto:worksarmaan@gmail.com" },
-  { label: "GitHub", value: "@armaantxs", href: "https://github.com/armaantxs" },
+  { label: "GitHub", value: "@weirdpink", href: "https://github.com/weirdpink" },
   { label: "LinkedIn", value: "in/armaantxs", href: "https://www.linkedin.com/in/armaantxs" },
   { label: "Instagram", value: "@armaantxs", href: "https://www.instagram.com/armaantxs" },
   { label: "X", value: "@armaantxs", href: "https://x.com/armaantxs" },

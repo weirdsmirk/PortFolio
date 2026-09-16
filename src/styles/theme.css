@@ -186,4 +186,35 @@
   .group:hover .contact-underline::after {
     transform: scaleX(1);
   }
+
+  .marquee-track {
+    animation: marquee-scroll 26s linear infinite;
+    will-change: transform;
+  }
+
+  .skill-scale {
+    background-color: rgba(10, 10, 10, 0.045);
+    background-image: repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc(20% - 1px),
+      rgba(10, 10, 10, 0.07) calc(20% - 1px),
+      rgba(10, 10, 10, 0.07) 20%
+    );
+  }
+
+  @keyframes marquee-scroll {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
 }
