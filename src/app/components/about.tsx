@@ -9,7 +9,7 @@ const facts = [
 
 export function About() {
   return (
-    <section id="about" tabIndex={-1} className="bg-white">
+    <section id="about" tabIndex={-1} className="bg-white scroll-mt-16 md:scroll-mt-20">
       <div className="mx-auto w-full px-6 py-24 md:px-12 md:py-32">
         {/* Top row: marker + note left, big display right */}
         <div className="border-b border-black/10 pb-12 md:pb-16">

@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Menu, X } from "lucide-react";
 
@@ -17,6 +17,7 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(0);
+  const location = useLocation();
 
   const { scrollY } = useScroll();
 
@@ -53,7 +54,42 @@ export function Nav() {
     };
   }, [open]);
 
-  const handleNavClick = useCallback(() => setOpen(false), []);
+  const handleNavClick = useCallback(
+    (href: string, e: React.MouseEvent) => {
+      setOpen(false);
+      document.body.style.overflow = "";
+
+      if (location.pathname === "/") {
+        if (href === "/" || href === "") {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+              ? "auto"
+              : "smooth",
+          });
+          window.history.pushState(null, "", "/");
+          return;
+        }
+
+        if (href.startsWith("/#")) {
+          e.preventDefault();
+          const targetId = href.slice(2);
+          const target = document.getElementById(targetId);
+          if (target) {
+            target.scrollIntoView({
+              behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                ? "auto"
+                : "smooth",
+              block: "start",
+            });
+            window.history.pushState(null, "", href);
+          }
+        }
+      }
+    },
+    [location.pathname],
+  );
 
   return (
     <motion.header
@@ -71,7 +107,11 @@ export function Nav() {
     >
       <nav aria-label="Main navigation" className="relative mx-auto flex w-full items-center justify-between px-6 py-4 md:px-12">
         <div className="flex items-center gap-3 sm:gap-4">
-          <Link to="/" className="eyebrow hidden text-[10px] transition-opacity hover:opacity-70 sm:inline-block">
+          <Link
+            to="/"
+            onClick={(e) => handleNavClick("/", e)}
+            className="eyebrow hidden text-[10px] transition-opacity hover:opacity-70 sm:inline-block"
+          >
             PORTFOLIO — 2026
           </Link>
         </div>
@@ -81,7 +121,7 @@ export function Nav() {
             <Link
               key={l.href}
               to={l.href}
-              onClick={handleNavClick}
+              onClick={(e) => handleNavClick(l.href, e)}
               className="eyebrow group relative text-[10px] transition-colors hover:text-black"
             >
               {l.label}
@@ -140,7 +180,7 @@ export function Nav() {
                 >
                   <Link
                     to={l.href}
-                    onClick={handleNavClick}
+                    onClick={(e) => handleNavClick(l.href, e)}
                     className="flex items-center justify-between border-b border-black/5 py-4 font-serif text-[28px] leading-none tracking-tight"
                   >
                     {l.label}

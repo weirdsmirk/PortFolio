@@ -121,7 +121,7 @@ export function Skills() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="skills" tabIndex={-1} className="bg-white">
+    <section id="skills" tabIndex={-1} className="bg-white scroll-mt-16 md:scroll-mt-20">
       <div className="mx-auto w-full px-6 py-24 md:px-12 md:py-32">
         <div className="mb-12">
           <Reveal delay={0.1}>

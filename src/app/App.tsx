@@ -16,6 +16,7 @@ function ScrollToTop() {
   const { pathname, hash } = useLocation();
   const prevPathname = useRef(pathname);
   const isRestoring = useRef(false);
+  const isInitialMount = useRef(true);
 
   useEffect(() => {
     if (!("scrollRestoration" in window.history)) return;
@@ -52,12 +53,24 @@ function ScrollToTop() {
     let timer: number | undefined;
     const scrollTo = (top: number) => window.scrollTo(0, top);
 
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      prevPathname.current = pathname;
+      if (pathname === "/") {
+        scrollTo(0);
+        if (window.location.hash) {
+          window.history.replaceState(null, "", window.location.pathname);
+        }
+      }
+      return;
+    }
+
     if (pathname.startsWith("/project/")) {
       scrollTo(0);
     } else if (pathname === "/") {
       if (hash) {
         const targetId = hash.slice(1);
-        frame = window.requestAnimationFrame(() => {
+        timer = window.setTimeout(() => {
           const target = document.getElementById(targetId);
           target?.scrollIntoView({
             behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -65,8 +78,7 @@ function ScrollToTop() {
               : "smooth",
             block: "start",
           });
-          target?.focus({ preventScroll: true });
-        });
+        }, 60);
       } else if (prevPathname.current.startsWith("/project/")) {
         isRestoring.current = true;
         writeSession("returningFromProject", "true");

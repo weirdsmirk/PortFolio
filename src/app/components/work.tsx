@@ -43,7 +43,7 @@ function WorkCard({ project }: { project: Project }) {
 
 export function Work() {
   return (
-    <section id="work" tabIndex={-1} className="w-full py-24 md:py-32">
+    <section id="work" tabIndex={-1} className="w-full py-24 md:py-32 scroll-mt-16 md:scroll-mt-20">
       {/* Header Row */}
       <div className="mx-auto w-full px-6 md:px-12 mb-12">
         <Reveal as="div" delay={0.1}>
