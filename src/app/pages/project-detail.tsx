@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router";
-import { ArrowLeft, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, CheckCircle2, Maximize2 } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { projects } from "../data";
 import { ImageWithFallback } from "../components/ImageWithFallback";
+import { ImageLightbox } from "../components/image-lightbox";
 import { writeSession } from "../browser";
 import { EASE } from "../constants";
 
@@ -11,6 +13,7 @@ export default function ProjectDetail() {
   const navigate = useNavigate();
   const reduceMotion = useReducedMotion();
   const project = projects.find((p) => p.id === id);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const handleBack = () => {
     writeSession("returningFromProject", "true");
@@ -34,6 +37,18 @@ export default function ProjectDetail() {
   }
 
   const isDesign = project.discipline === "Design";
+  const engineeringCover = project.cover || project.workCover;
+  const lightboxImages = isDesign
+    ? project.gallery
+    : [
+        ...(engineeringCover ? [engineeringCover] : []),
+        ...project.gallery.filter((img) => img !== engineeringCover),
+      ];
+
+  const handleOpenLightbox = (index: number) => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
+    setLightboxIndex(index);
+  };
 
   return (
     <motion.article
@@ -105,8 +120,9 @@ export default function ProjectDetail() {
                   return (
                     <div
                       key={i}
+                      onClick={() => handleOpenLightbox(i)}
                       className={[
-                        "group relative overflow-hidden aspect-[2918/4096] w-full ring-1 ring-inset ring-[#111111]/25",
+                        "group relative overflow-hidden aspect-[2918/4096] w-full ring-1 ring-inset ring-[#111111]/25 cursor-default md:cursor-zoom-in",
                         isLight ? "bg-[#f5f1ea]" : "bg-[#111111]",
                       ].join(" ")}
                     >
@@ -114,12 +130,15 @@ export default function ProjectDetail() {
                         src={img}
                         alt={`${project.title} poster 0${i + 1}`}
                         className={[
-                          "h-full w-full object-cover",
+                          "h-full w-full object-cover transition-transform duration-500 md:group-hover:scale-[1.02]",
                           isLight ? "contrast-110" : "brightness-[1.06] contrast-125",
                         ].join(" ")}
                         width={1200}
                         height={1700}
                       />
+                      <div className="pointer-events-none absolute bottom-3 right-3 hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 md:group-hover:opacity-100">
+                        <Maximize2 size={14} />
+                      </div>
                     </div>
                   );
                 })}
@@ -129,14 +148,21 @@ export default function ProjectDetail() {
             {project.category === "Logo" && (
               <div className="grid grid-cols-2">
                 {project.gallery.map((img, i) => (
-                  <div key={i} className="group relative overflow-hidden bg-neutral-950 aspect-square w-full p-8 sm:p-14 flex items-center justify-center">
+                  <div
+                    key={i}
+                    onClick={() => handleOpenLightbox(i)}
+                    className="group relative overflow-hidden bg-neutral-950 aspect-square w-full p-8 sm:p-14 flex items-center justify-center cursor-default md:cursor-zoom-in"
+                  >
                     <ImageWithFallback
                       src={img}
                       alt={`${project.title} mark 0${i + 1}`}
-                      className="max-h-full max-w-full object-contain"
+                      className="max-h-full max-w-full object-contain transition-transform duration-500 md:group-hover:scale-105"
                       width={400}
                       height={400}
                     />
+                    <div className="pointer-events-none absolute bottom-3 right-3 hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 md:group-hover:opacity-100">
+                      <Maximize2 size={14} />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -145,14 +171,21 @@ export default function ProjectDetail() {
             {project.category === "Brand Identity" && (
               <div className="grid grid-cols-1 sm:grid-cols-2">
                 {project.gallery.map((img, i) => (
-                  <div key={i} className="group relative overflow-hidden bg-neutral-950 aspect-[4/3] w-full">
+                  <div
+                    key={i}
+                    onClick={() => handleOpenLightbox(i)}
+                    className="group relative overflow-hidden bg-neutral-950 aspect-[4/3] w-full cursor-default md:cursor-zoom-in"
+                  >
                     <ImageWithFallback
                       src={img}
                       alt={`${project.title} asset 0${i + 1}`}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover transition-transform duration-500 md:group-hover:scale-[1.02]"
                       width={1000}
                       height={750}
                     />
+                    <div className="pointer-events-none absolute bottom-3 right-3 hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 md:group-hover:opacity-100">
+                      <Maximize2 size={14} />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -190,14 +223,23 @@ export default function ProjectDetail() {
         <>
           {/* Main Hero Showcase */}
           <div className="w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+6rem)] md:-ml-12 overflow-hidden border-y border-black/10 bg-neutral-950 aspect-[16/9] my-10 md:my-14">
-            {project.cover ? (
-              <ImageWithFallback
-                src={project.cover}
-                alt={project.title}
-                className="h-full w-full object-cover"
-                width={1400}
-                height={788}
-              />
+            {engineeringCover ? (
+              <div
+                onClick={() => handleOpenLightbox(0)}
+                className="group relative h-full w-full cursor-default md:cursor-zoom-in"
+              >
+                <ImageWithFallback
+                  src={engineeringCover}
+                  alt={project.title}
+                  className="h-full w-full object-cover transition-transform duration-500 md:group-hover:scale-[1.01]"
+                  width={1400}
+                  height={788}
+                />
+                <div className="pointer-events-none absolute bottom-4 right-4 hidden md:flex items-center gap-2 rounded-full bg-black/60 px-3.5 py-1.5 text-xs text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 md:group-hover:opacity-100">
+                  <Maximize2 size={13} />
+                  <span className="font-mono text-[11px] tracking-wider uppercase">Full Screen</span>
+                </div>
+              </div>
             ) : (
               <div
                 aria-hidden="true"
@@ -281,6 +323,16 @@ export default function ProjectDetail() {
         </button>
         <span className="eyebrow text-neutral-400 font-mono">PORTFOLIO — 2026</span>
       </div>
+
+      {/* Full-screen Image Lightbox Modal */}
+      <ImageLightbox
+        isOpen={lightboxIndex !== null}
+        images={lightboxImages}
+        currentIndex={lightboxIndex ?? 0}
+        title={project.title}
+        onClose={() => setLightboxIndex(null)}
+        onNavigate={(newIndex) => setLightboxIndex(newIndex)}
+      />
     </motion.article>
   );
 }
