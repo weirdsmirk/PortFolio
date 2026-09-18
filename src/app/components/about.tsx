@@ -4,7 +4,7 @@ const facts = [
   { k: "Study", v: "B.Tech, Computer Science — Bennett University" },
   { k: "Focus", v: "Cybersecurity" },
   { k: "Year", v: "Second Year" },
-  { k: "Interests", v: "Freelance Design, Freelance Developer, Entrepreneurship" },
+  { k: "Interests", v: "Building Things, Design, Cybersecurity" },
 ];
 
 export function About() {
@@ -37,15 +37,16 @@ export function About() {
             <div className="space-y-5 text-[18px] leading-relaxed text-neutral-700 md:text-[20px]">
               <p>
                 I&apos;m a second-year Computer Science student at Bennett
-                University, specialising in cybersecurity. Code shapes
-                what&apos;s possible; design decides what&apos;s worth doing at
-                all. Neither discipline is secondary to the other.
+                University, specialising in cybersecurity. I work across
+                software development and graphic/UI design, and I enjoy being
+                able to build something as well as think about how it looks and
+                feels.
               </p>
               <p>
-                I&apos;m interested in entrepreneurship, and I&apos;m building toward
-                launching products of my own while working as a freelance
-                designer and freelance developer. I&apos;d rather make fewer things
-                and make them clearly.
+                Outside of college, I work on my own projects and take on
+                freelance design and development work. I&apos;m still learning
+                and experimenting with different things, but I like making
+                things that are useful, simple, and well thought out.
               </p>
             </div>
           </Reveal>
