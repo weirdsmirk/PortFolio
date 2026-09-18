@@ -1,44 +1,74 @@
 # Portfolio
 
-This is my personal portfolio website. I built it to show my projects, design work, and a bit about what I do.
+This is my personal portfolio website. I made it to showcase my projects, design work, and what I do across software development and graphic/UI design.
 
-The site is intentionally simple and focused on both software development and graphic/UI design.
+## Tech stack
 
-## Tech Stack
-
-* React
-* TypeScript
+* React and TypeScript
 * Vite
 * Tailwind CSS
 * Motion
 * React Router
 * Lucide React
 
-## Run Locally
+## Requirements
 
-Make sure you have Node.js 18.18 or newer installed.
+* Node.js 18.18 or newer
+* npm
+
+## Setup
+
+Install the dependencies:
 
 ```bash
-git clone https://github.com/weirdsmirk/PortFolio.git
-cd PortFolio
 npm install
+```
+
+## Run locally
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-Then open the local URL shown in the terminal, usually:
+Then open the local address shown in the terminal, usually:
 
-`http://localhost:5173`
+```text
+http://localhost:5173
+```
 
-## Build
+## Production
 
-To create a production build:
+Build the website:
 
 ```bash
 npm run build
 ```
 
-To preview the production build locally:
+Preview the production build locally:
 
 ```bash
 npm run preview
 ```
+
+## Useful commands
+
+```bash
+npm run dev       # start development server
+npm run build     # create production build
+npm run preview   # preview production build
+npm run typecheck # check TypeScript
+npm run check     # run checks and build
+```
+
+## Project layout
+
+* `src/` contains the main application.
+* `src/app/components/` contains the main UI sections.
+* `src/app/pages/` contains the different pages.
+* `src/app/data.ts` contains the portfolio content.
+* `src/styles/` contains the global styles.
+* `public/` contains static assets.
+
+This is a personal portfolio project built to represent both my development and design work.
