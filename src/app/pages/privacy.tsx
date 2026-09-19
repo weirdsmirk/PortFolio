@@ -68,15 +68,6 @@ export default function Privacy() {
             </div>
 
             <div>
-              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-950">Audio Playback</h2>
-              <p>
-                The optional music player on the homepage loads and plays an audio file locally.
-                Playback is entirely user-initiated and generates no network requests beyond the
-                initial file load. No listening data is recorded or transmitted.
-              </p>
-            </div>
-
-            <div>
               <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-950">External Links</h2>
               <p>
                 External links to platforms such as GitHub, LinkedIn, Instagram, and third-party

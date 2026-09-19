@@ -188,11 +188,6 @@ export const skillGroups: { title: string; items: SkillItem[] }[] = [
 
 export const resumeUrl = "/resume.pdf";
 
-export const music = {
-  title: "Softcore",
-  src: "/Softcore.mp3",
-};
-
 export const contactLinks: { label: string; value: string; href: string }[] = [
   { label: "Email", value: "worksarmaan@gmail.com", href: "mailto:worksarmaan@gmail.com" },
   { label: "GitHub", value: "@weirdpink", href: "https://github.com/weirdpink" },

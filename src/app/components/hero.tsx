@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { EASE } from "../constants";
-import { MusicPlayer } from "./music-player";
 
 let heroMounted = false;
 
@@ -46,7 +45,7 @@ export function Hero() {
     <section
       id="top"
       tabIndex={-1}
-      className="relative z-10 mx-auto flex min-h-[100dvh] w-full flex-col justify-center px-6 py-20 md:h-[100dvh] md:min-h-0 md:px-12 md:py-16"
+      className="relative z-10 mx-auto flex min-h-[100dvh] w-full flex-col justify-center px-6 py-20 md:px-12"
     >
       <motion.div
         variants={container}
@@ -78,7 +77,6 @@ export function Hero() {
         </h1>
       </motion.div>
 
-      <AnimatePresence>{intro && <MusicPlayer key="music-player" />}</AnimatePresence>
-    </section>
+      </section>
   );
 }
