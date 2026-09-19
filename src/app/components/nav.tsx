@@ -9,7 +9,6 @@ const links = [
   { label: "Work", href: "/#work" },
   { label: "About", href: "/#about" },
   { label: "Skills", href: "/#skills" },
-  { label: "Contact", href: "/#contact" },
 ];
 
 export function Nav() {
@@ -135,61 +134,71 @@ export function Nav() {
     <motion.header
       initial={{ y: -60, opacity: 0 }}
       animate={{
-        y: hidden && !open ? -80 : 0,
+        y: hidden && !open ? -96 : 0,
         opacity: 1,
       }}
       transition={{
         duration: hidden && !open ? 0.25 : 0.45,
         ease: EASE,
       }}
-      className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-white"
+      className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-white/80 backdrop-blur-sm"
     >
-      <nav aria-label="Main navigation" className="relative mx-auto flex w-full items-center justify-between px-6 py-4 md:px-12">
-        <div className="flex items-center gap-3 sm:gap-4">
+      <nav aria-label="Main navigation" className="relative mx-auto flex w-full items-center justify-between px-6 py-4 md:px-12 md:py-5">
+        <div className="flex items-center">
           <Link
             to="/"
             onClick={(e) => handleNavClick("/", e)}
-            className="eyebrow text-[10px] transition-opacity hover:opacity-70"
+            className="flex items-baseline font-sans text-[17px] leading-none tracking-tight text-black transition-opacity hover:opacity-80"
           >
-            PORTFOLIO — 2026
+            <span className="font-bold">Armaan</span>
+            <span className="font-normal text-black/50">/portfolio</span>
           </Link>
         </div>
 
-        <div className="hidden items-center gap-10 md:flex">
-          {links.map((l) => (
-              <Link
-                key={l.href}
-                to={l.href}
-                onClick={(e) => handleNavClick(l.href, e)}
-                className="eyebrow group relative text-[10px] transition-colors hover:text-black"
-              >
-                {l.label}
-                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100" />
-              </Link>
-          ))}
-        </div>
+        <div className="flex items-center gap-8">
+          <div className="hidden items-center gap-8 md:flex">
+            {links.map((l) => (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  onClick={(e) => handleNavClick(l.href, e)}
+                  className="font-sans text-[15px] font-normal text-black/75 transition-colors hover:text-black"
+                >
+                  {l.label}
+                </Link>
+            ))}
+          </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          aria-controls="mobile-navigation"
-          className="relative flex h-11 w-11 items-center justify-center rounded-full border border-black/15 transition-colors hover:bg-black hover:text-white md:hidden"
-        >
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.span
-              key={open ? "close" : "open"}
-              initial={{ opacity: 0, rotate: -45 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: 45 }}
-              transition={{ duration: 0.2, ease: EASE }}
-              className="flex items-center justify-center"
-            >
-              {open ? <X size={16} /> : <Menu size={16} />}
-            </motion.span>
-          </AnimatePresence>
-        </button>
+          <Link
+            to="/#contact"
+            onClick={(e) => handleNavClick("/#contact", e)}
+            className="inline-flex min-h-12 items-center justify-center rounded-[2px] bg-[#0d11ff] px-6 font-sans text-[15px] font-bold text-white transition-opacity hover:opacity-90"
+          >
+            Contact
+          </Link>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            className="relative flex h-12 w-12 items-center justify-center text-black transition-opacity hover:opacity-70 md:hidden"
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={open ? "close" : "open"}
+                initial={{ opacity: 0, rotate: -45 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: 45 }}
+                transition={{ duration: 0.2, ease: EASE }}
+                className="flex items-center justify-center"
+              >
+                {open ? <X size={16} /> : <Menu size={16} />}
+              </motion.span>
+            </AnimatePresence>
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -200,7 +209,7 @@ export function Nav() {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: EASE }}
             id="mobile-navigation"
-            className="overflow-hidden border-t border-black/10 md:hidden"
+            className="overflow-hidden border-t border-black/10 bg-white/90 backdrop-blur-sm md:hidden"
           >
             <motion.ul
               className="flex flex-col px-6 py-4"
@@ -227,10 +236,9 @@ export function Nav() {
                     <Link
                       to={l.href}
                       onClick={(e) => handleNavClick(l.href, e)}
-                      className="flex items-center justify-between border-b border-black/5 py-4 font-serif text-[28px] leading-none tracking-tight"
+                      className="flex items-center justify-between border-b border-black/10 py-4 font-sans text-[17px] text-black/75"
                     >
                       {l.label}
-                      <span className="eyebrow">→</span>
                     </Link>
                   </motion.li>
               ))}
