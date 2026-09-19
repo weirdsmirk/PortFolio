@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { EASE } from "../constants";
-
-let heroMounted = false;
 
 const container = {
   hidden: {},
@@ -20,27 +17,6 @@ const line = {
 };
 
 export function Hero() {
-  const reduceMotion = useReducedMotion();
-  const [intro, setIntro] = useState(() => {
-    const isReturning = heroMounted;
-    heroMounted = true;
-    return isReturning;
-  });
-
-  useEffect(() => {
-    if (intro || reduceMotion) {
-      setIntro(true);
-      return;
-    }
-    const onIntro = () => setIntro(true);
-    window.addEventListener("hero-intro", onIntro);
-    const fallback = window.setTimeout(onIntro, 7000);
-    return () => {
-      window.removeEventListener("hero-intro", onIntro);
-      window.clearTimeout(fallback);
-    };
-  }, [intro, reduceMotion]);
-
   return (
     <section
       id="top"
@@ -50,7 +26,7 @@ export function Hero() {
       <motion.div
         variants={container}
         initial="hidden"
-        animate={intro ? "show" : "hidden"}
+        animate="show"
         className="flex w-full max-w-6xl flex-col items-start text-left"
       >
         <h1 className="font-serif text-[clamp(3.5rem,11.5vw,11.5rem)] leading-[0.95] tracking-[-0.02em]">
