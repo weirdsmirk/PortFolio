@@ -37,7 +37,7 @@ const stacks = [
 
 export default function Colophon() {
   return (
-    <section className="">
+    <section className="bg-white">
       <div className="mx-auto w-full px-6 pt-32 pb-24 md:px-12 md:pt-40 md:pb-32">
         <motion.div
           initial="hidden"
@@ -47,12 +47,12 @@ export default function Colophon() {
         >
           <motion.div
             variants={fade}
-            className="mb-12 flex items-center justify-between border-b border-white/10 pb-6"
+            className="mb-12 flex items-center justify-between border-b border-black/10 pb-6"
           >
             <span className="eyebrow">About this site</span>
             <Link
               to="/"
-              className="group flex items-center gap-2 eyebrow transition-colors hover:text-white"
+              className="group flex items-center gap-2 eyebrow transition-colors hover:text-black"
             >
               <ArrowLeft
                 size={14}
@@ -71,7 +71,7 @@ export default function Colophon() {
 
           <motion.p
             variants={fade}
-            className="mt-6 max-w-xl font-sans text-lg leading-relaxed text-neutral-300"
+            className="mt-6 max-w-xl font-sans text-lg leading-relaxed text-neutral-700"
           >
             A record of the tools, type, and infrastructure behind this portfolio.
             Designed and engineered end to end by Armaan.
@@ -79,12 +79,12 @@ export default function Colophon() {
 
           <motion.div variants={fade} className="mt-16 space-y-12">
             {stacks.map((s) => (
-              <div key={s.label} className="border-t border-white/10 pt-8">
+              <div key={s.label} className="border-t border-black/10 pt-8">
                 <p className="eyebrow mb-4">{s.label}</p>
                 <div className="flex flex-wrap gap-x-2 gap-y-1">
                   {s.items.map((item, i) => (
                     <span key={item}>
-                      <span className="font-serif text-2xl italic tracking-tight text-neutral-50 md:text-3xl">
+                      <span className="font-serif text-2xl italic tracking-tight text-neutral-950 md:text-3xl">
                         {item}
                       </span>
                       {i < s.items.length - 1 && (

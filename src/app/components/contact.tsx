@@ -50,7 +50,7 @@ export function Contact() {
 
   return (
     <>
-      <section id="contact" tabIndex={-1} className="scroll-mt-20 md:scroll-mt-24">
+      <section id="contact" tabIndex={-1} className="bg-white scroll-mt-20 md:scroll-mt-24">
       <div className="mx-auto w-full px-6 pt-12 pb-32 md:px-12 md:pt-16 md:pb-40">
         <Reveal delay={0.05} y={40}>
           <h2 className="mt-10 md:mt-12 font-serif text-[clamp(4rem,12vw,11rem)] leading-[1.02] tracking-tight">
@@ -78,7 +78,7 @@ export function Contact() {
               href={resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-5 border border-white/25 px-6 py-4 font-serif text-[clamp(1.5rem,2.5vw,2.25rem)] leading-none tracking-tight transition-colors hover:border-white hover:bg-white hover:text-black"
+              className="group inline-flex items-center gap-5 border border-black/20 px-6 py-4 font-serif text-[clamp(1.5rem,2.5vw,2.25rem)] leading-none tracking-tight transition-colors hover:border-black hover:bg-black hover:text-white"
             >
               Check out my résumé
               <ArrowUpRight
@@ -108,7 +108,7 @@ export function Contact() {
                       onClick={() => setNotice(c)}
                       aria-label={c.label}
                       aria-haspopup="dialog"
-                      className="flex h-14 w-14 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:bg-white hover:text-black cursor-pointer"
+                      className="flex h-14 w-14 items-center justify-center rounded-full border border-black/15 text-black transition-all hover:bg-black hover:text-white cursor-pointer"
                     >
                       {Icon && <Icon size={20} />}
                     </button>
@@ -117,7 +117,7 @@ export function Contact() {
                       href={c.href}
                       aria-label={c.label}
                       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      className="flex h-14 w-14 items-center justify-center rounded-full border border-white/20 text-white transition-all hover:bg-white hover:text-black"
+                      className="flex h-14 w-14 items-center justify-center rounded-full border border-black/15 text-black transition-all hover:bg-black hover:text-white"
                     >
                       {Icon && <Icon size={20} />}
                     </a>

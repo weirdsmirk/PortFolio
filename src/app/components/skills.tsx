@@ -43,12 +43,12 @@ function SkillRadar({ items }: { items: { label: string; href: string; level: nu
           cy={CENTER.y}
           r={R * f}
           fill="none"
-          stroke="rgba(255,255,255,0.16)"
+          stroke="rgba(10,10,10,0.1)"
           strokeWidth={1}
         />
       ))}
 
-      <path d={polygonPath(outer)} fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth={1} strokeDasharray="3 6" />
+      <path d={polygonPath(outer)} fill="none" stroke="rgba(10,10,10,0.08)" strokeWidth={1} strokeDasharray="3 6" />
 
       {outer.map((p, k) => (
         <line
@@ -57,15 +57,15 @@ function SkillRadar({ items }: { items: { label: string; href: string; level: nu
           y1={CENTER.y}
           x2={p.x}
           y2={p.y}
-          stroke="rgba(255,255,255,0.14)"
+          stroke="rgba(10,10,10,0.08)"
           strokeWidth={1}
         />
       ))}
 
       <motion.path
         d={polygonPath(tips)}
-        fill="rgba(255,255,255,0.08)"
-        stroke="#fafafa"
+        fill="rgba(10,10,10,0.08)"
+        stroke="#0a0a0a"
         strokeWidth={1.5}
         initial={{ pathLength: 0, opacity: 0 }}
         whileInView={{ pathLength: 1, opacity: 1 }}
@@ -79,7 +79,7 @@ function SkillRadar({ items }: { items: { label: string; href: string; level: nu
           cx={p.x}
           cy={p.y}
           r={4}
-          fill="#fafafa"
+          fill="#0a0a0a"
           initial={{ opacity: 0, scale: 0 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -101,7 +101,7 @@ function SkillRadar({ items }: { items: { label: string; href: string; level: nu
             y={y}
             fill="currentColor"
             textAnchor={anchor}
-            className="font-serif italic tracking-tight text-neutral-50"
+            className="font-serif italic tracking-tight text-neutral-950"
             style={{ fontSize: 26 }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -124,7 +124,7 @@ export function Skills() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="skills" tabIndex={-1} className="scroll-mt-16 md:scroll-mt-20">
+    <section id="skills" tabIndex={-1} className="bg-white scroll-mt-16 md:scroll-mt-20">
       <div className="mx-auto w-full px-6 py-24 md:px-12 md:py-32">
         <div className="mb-12">
           <Reveal delay={0.1}>
@@ -134,7 +134,7 @@ export function Skills() {
           </Reveal>
         </div>
 
-        <div className="mb-12 grid grid-cols-3 border-t border-white/10 md:mb-16">
+        <div className="mb-12 grid grid-cols-3 border-t border-black/10 md:mb-16">
           {skillGroups.map((g, i) => {
             const isActive = active === i;
             return (
@@ -144,8 +144,8 @@ export function Skills() {
                 onClick={() => setActive(i)}
                 aria-pressed={isActive}
                 className={`relative pb-6 pt-5 text-left transition-colors duration-300 md:pb-8 md:pt-6 ${
-                  i > 0 ? "border-l border-white/10 pl-4 md:pl-8" : ""
-                } ${isActive ? "text-neutral-50" : "text-neutral-400 hover:text-neutral-200"}`}
+                  i > 0 ? "border-l border-black/10 pl-4 md:pl-8" : ""
+                } ${isActive ? "text-neutral-950" : "text-neutral-400 hover:text-neutral-600"}`}
               >
                 <span className="block font-serif italic text-[clamp(1.2rem,2.6vw,2.6rem)] leading-none tracking-tight">
                   {g.title}
@@ -153,7 +153,7 @@ export function Skills() {
                 {isActive && (
                   <motion.span
                     layoutId="skills-tab-underline"
-                    className="absolute bottom-0 left-0 h-0.5 w-full bg-neutral-50"
+                    className="absolute bottom-0 left-0 h-0.5 w-full bg-neutral-950"
                   />
                 )}
               </button>
@@ -175,12 +175,12 @@ export function Skills() {
             <ul className="space-y-3">
               {skillGroups[active].items.map((it) => (
                 <li key={it.label} className="group flex items-baseline gap-3">
-                  <span className="h-2 w-2 shrink-0 self-center rounded-full bg-neutral-50 transition-transform duration-300 group-hover:scale-125" />
+                  <span className="h-2 w-2 shrink-0 self-center rounded-full bg-neutral-950 transition-transform duration-300 group-hover:scale-125" />
                   <span className="font-serif italic text-lg leading-none tracking-tight md:text-xl">
                     {it.label}
                   </span>
-                  <span className="mx-1 flex-1 border-b border-white/10" />
-                  <span className="font-mono text-sm text-neutral-400 group-hover:text-white md:text-base">
+                  <span className="mx-1 flex-1 border-b border-black/10" />
+                  <span className="font-mono text-sm text-neutral-400 group-hover:text-neutral-950 md:text-base">
                     {String(it.level).padStart(2, "0")}
                   </span>
                 </li>
