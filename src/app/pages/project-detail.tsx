@@ -24,7 +24,7 @@ export default function ProjectDetail() {
         <Link
           to="/"
           onClick={backToHome}
-          className="eyebrow group inline-flex h-12 items-center justify-center rounded-full border border-black/15 px-8 text-black transition-all hover:bg-black hover:text-white"
+          className="eyebrow group inline-flex h-12 items-center justify-center rounded-full border border-white/20 px-8 text-white transition-all hover:bg-white hover:text-black"
         >
           Return to Work
         </Link>
@@ -59,12 +59,12 @@ export default function ProjectDetail() {
     >
       {/* Top Navigation & Header */}
       <div className="mb-12 md:mb-16">
-        <div className="mb-12 flex items-center justify-between border-b border-black/10 pb-6">
+        <div className="mb-12 flex items-center justify-between border-b border-white/10 pb-6">
           <span className="eyebrow">Case Study</span>
           <Link
             to="/"
             onClick={backToHome}
-            className="group flex items-center gap-2 eyebrow transition-colors hover:text-black"
+            className="group flex items-center gap-2 eyebrow transition-colors hover:text-white"
           >
             <ArrowLeft
               size={14}
@@ -74,27 +74,27 @@ export default function ProjectDetail() {
           </Link>
         </div>
 
-        <h1 className="italic-serif text-[clamp(2.75rem,7.5vw,6rem)] leading-[0.98] tracking-tight text-neutral-950">
+        <h1 className="italic-serif text-[clamp(2.75rem,7.5vw,6rem)] leading-[0.98] tracking-tight text-neutral-50">
           {project.title}
         </h1>
 
         {/* Top Metadata Bar */}
-        <div className="mt-8 grid grid-cols-2 gap-6 border-y border-black/10 py-5 sm:grid-cols-4 md:mt-10">
+        <div className="mt-8 grid grid-cols-2 gap-6 border-y border-white/10 py-5 sm:grid-cols-4 md:mt-10">
           <div>
             <div className="eyebrow text-neutral-500 mb-1">Role</div>
-            <div className="text-sm font-medium text-neutral-900">{project.role}</div>
+            <div className="text-sm font-medium text-neutral-100">{project.role}</div>
           </div>
           <div>
             <div className="eyebrow text-neutral-500 mb-1">Timeline</div>
-            <div className="text-sm font-medium text-neutral-900">{project.year}</div>
+            <div className="text-sm font-medium text-neutral-100">{project.year}</div>
           </div>
           <div>
             <div className="eyebrow text-neutral-500 mb-1">Discipline</div>
-            <div className="text-sm font-medium text-neutral-900">{project.discipline}</div>
+            <div className="text-sm font-medium text-neutral-100">{project.discipline}</div>
           </div>
           <div>
             <div className="eyebrow text-neutral-500 mb-1">Deliverables</div>
-            <div className="text-sm font-medium text-neutral-900">{project.tools[0]} & More</div>
+            <div className="text-sm font-medium text-neutral-100">{project.tools[0]} & More</div>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@ export default function ProjectDetail() {
       {isDesign ? (
         <>
           {/* EXACT FILL STYLE IMAGE PLACEMENT (Full bleed filled box grid) */}
-          <div className="w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+6rem)] md:-ml-12 overflow-hidden border-y border-black/10 bg-black/10 my-10 md:my-14">
+          <div className="w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+6rem)] md:-ml-12 overflow-hidden border-y border-white/10 bg-white/10 my-10 md:my-14">
             {project.category === "Poster" && (
               <div className="grid grid-cols-2">
                 {project.gallery.map((img, i) => {
@@ -188,20 +188,20 @@ export default function ProjectDetail() {
 
           {/* DESCRIPTION BELOW ALL THE IMAGES */}
           <div className="mx-auto max-w-3xl pt-6 pb-12">
-            <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-neutral-950 leading-snug tracking-tight mb-5">
+            <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-neutral-50 leading-snug tracking-tight mb-5">
               {project.description}
             </h2>
-            <p className="text-[15px] sm:text-[16px] leading-relaxed text-neutral-700 mb-8">
+            <p className="text-[15px] sm:text-[16px] leading-relaxed text-neutral-300 mb-8">
               {project.overview}
             </p>
 
-            <div className="border-t border-black/10 pt-6 mt-8">
+            <div className="border-t border-white/10 pt-6 mt-8">
               <div className="eyebrow mb-3.5 text-neutral-500 font-mono">CORE CAPABILITIES</div>
               <div className="flex flex-wrap gap-2">
                 {project.tools.map((t) => (
                   <span
                     key={t}
-                    className="eyebrow border border-black/15 px-3 py-1 text-xs text-neutral-800"
+                    className="eyebrow border border-white/20 px-3 py-1 text-xs text-neutral-200"
                   >
                     {t}
                   </span>
@@ -216,7 +216,7 @@ export default function ProjectDetail() {
         /* ========================================================================= */
         <>
           {/* Main Hero Showcase */}
-          <div className="w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+6rem)] md:-ml-12 overflow-hidden border-y border-black/10 bg-neutral-950 aspect-[16/9] my-10 md:my-14">
+          <div className="w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+6rem)] md:-ml-12 overflow-hidden border-y border-white/10 bg-neutral-950 aspect-[16/9] my-10 md:my-14">
             {engineeringCover ? (
               <div
                 onClick={() => handleOpenLightbox(0)}
@@ -253,7 +253,7 @@ export default function ProjectDetail() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="eyebrow group inline-flex items-center gap-1.5 border-b border-black pb-0.5 text-black transition-opacity hover:opacity-70"
+                  className="eyebrow group inline-flex items-center gap-1.5 border-b border-white pb-0.5 text-white transition-opacity hover:opacity-70"
                 >
                   View Repository
                   <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:rotate-45" />
@@ -261,23 +261,23 @@ export default function ProjectDetail() {
               )}
             </div>
 
-            <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-neutral-950 leading-snug tracking-tight mb-5">
+            <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-neutral-50 leading-snug tracking-tight mb-5">
               {project.description}
             </h2>
 
-            <p className="text-[15px] sm:text-[16px] leading-relaxed text-neutral-700 mb-8">
+            <p className="text-[15px] sm:text-[16px] leading-relaxed text-neutral-300 mb-8">
               {project.overview}
             </p>
 
             {/* Key Engineering Features */}
             {project.features && project.features.length > 0 && (
-              <div className="border-t border-black/10 pt-6 mt-8">
+              <div className="border-t border-white/10 pt-6 mt-8">
                 <div className="eyebrow mb-4 text-neutral-500 font-mono">KEY SYSTEM HIGHLIGHTS</div>
                 <div className="space-y-2.5">
                   {project.features.map((feat, idx) => (
                     <div key={idx} className="flex items-start gap-3">
                       <CheckCircle2 size={17} className="text-emerald-500 mt-0.5 shrink-0" />
-                      <span className="text-sm sm:text-[15px] text-neutral-800 leading-relaxed">
+                      <span className="text-sm sm:text-[15px] text-neutral-200 leading-relaxed">
                         {feat}
                       </span>
                     </div>
@@ -287,13 +287,13 @@ export default function ProjectDetail() {
             )}
 
             {/* Tech Stack */}
-            <div className="border-t border-black/10 pt-6 mt-8">
+            <div className="border-t border-white/10 pt-6 mt-8">
               <div className="eyebrow mb-3.5 text-neutral-500 font-mono">TECHNOLOGY STACK</div>
               <div className="flex flex-wrap gap-2">
                 {project.tools.map((t) => (
                   <span
                     key={t}
-                    className="eyebrow border border-black/15 px-3 py-1 text-xs text-neutral-800"
+                    className="eyebrow border border-white/20 px-3 py-1 text-xs text-neutral-200"
                   >
                     {t}
                   </span>
@@ -305,11 +305,11 @@ export default function ProjectDetail() {
       )}
 
       {/* Footer Navigation */}
-      <div className="border-t border-black/10 pt-10 flex justify-between items-center max-w-3xl mx-auto">
+      <div className="border-t border-white/10 pt-10 flex justify-between items-center max-w-3xl mx-auto">
         <Link
           to="/"
           onClick={backToHome}
-          className="eyebrow group inline-flex items-center gap-2 text-black transition-opacity hover:opacity-70"
+          className="eyebrow group inline-flex items-center gap-2 text-white transition-opacity hover:opacity-70"
         >
           <ArrowLeft size={15} className="transition-transform duration-300 group-hover:-translate-x-1" />
           Back to all work

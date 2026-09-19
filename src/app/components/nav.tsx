@@ -142,7 +142,7 @@ export function Nav() {
         duration: hidden && !open ? 0.25 : 0.45,
         ease: EASE,
       }}
-      className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-white"
+      className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-neutral-950"
     >
       <nav aria-label="Main navigation" className="relative mx-auto flex w-full items-center justify-between px-6 py-4 md:px-12">
         <div className="flex items-center gap-3 sm:gap-4">
@@ -161,7 +161,7 @@ export function Nav() {
                 key={l.href}
                 to={l.href}
                 onClick={(e) => handleNavClick(l.href, e)}
-                className="eyebrow group relative text-[10px] transition-colors hover:text-black"
+                className="eyebrow group relative text-[10px] transition-colors hover:text-white"
               >
                 {l.label}
                 <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100" />
@@ -175,7 +175,7 @@ export function Nav() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-navigation"
-          className="relative flex h-11 w-11 items-center justify-center rounded-full border border-black/15 transition-colors hover:bg-black hover:text-white md:hidden"
+          className="relative flex h-11 w-11 items-center justify-center rounded-full border border-white/20 transition-colors hover:bg-white hover:text-black md:hidden"
         >
           <AnimatePresence mode="wait" initial={false}>
             <motion.span
@@ -200,7 +200,7 @@ export function Nav() {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: EASE }}
             id="mobile-navigation"
-            className="overflow-hidden border-t border-black/10 md:hidden"
+            className="overflow-hidden border-t border-white/10 md:hidden"
           >
             <motion.ul
               className="flex flex-col px-6 py-4"
@@ -227,7 +227,7 @@ export function Nav() {
                     <Link
                       to={l.href}
                       onClick={(e) => handleNavClick(l.href, e)}
-                      className="flex items-center justify-between border-b border-black/5 py-4 font-serif text-[28px] leading-none tracking-tight"
+                      className="flex items-center justify-between border-b border-white/10 py-4 font-serif text-[28px] leading-none tracking-tight"
                     >
                       {l.label}
                       <span className="eyebrow">→</span>

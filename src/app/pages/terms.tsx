@@ -10,7 +10,7 @@ const fade = {
 
 export default function Terms() {
   return (
-    <section className="bg-white">
+    <section className="">
       <div className="mx-auto w-full px-6 pt-32 pb-24 md:px-12 md:pt-40 md:pb-32">
         <motion.div
           initial="hidden"
@@ -20,12 +20,12 @@ export default function Terms() {
         >
           <motion.div
             variants={fade}
-            className="mb-12 flex items-center justify-between border-b border-black/10 pb-6"
+            className="mb-12 flex items-center justify-between border-b border-white/10 pb-6"
           >
             <span className="eyebrow">Legal</span>
             <Link
               to="/"
-              className="group flex items-center gap-2 eyebrow transition-colors hover:text-black"
+              className="group flex items-center gap-2 eyebrow transition-colors hover:text-white"
             >
               <ArrowLeft
                 size={14}
@@ -46,9 +46,9 @@ export default function Terms() {
             Last updated September 2026
           </motion.p>
 
-          <motion.div variants={fade} className="space-y-8 font-sans text-base leading-relaxed text-neutral-700">
+          <motion.div variants={fade} className="space-y-8 font-sans text-base leading-relaxed text-neutral-300">
             <div>
-              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-950">Overview</h2>
+              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-50">Overview</h2>
               <p>
                 This portfolio is operated by Armaan. By accessing or using this site, you agree to be
                 bound by these terms. If you do not agree, please discontinue use.
@@ -56,7 +56,7 @@ export default function Terms() {
             </div>
 
             <div>
-              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-950">Intellectual Property</h2>
+              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-50">Intellectual Property</h2>
               <p>
                 All designs, code, branding, and content displayed on this site are the intellectual
                 property of Armaan unless otherwise noted. You may not reproduce, distribute, or
@@ -65,7 +65,7 @@ export default function Terms() {
             </div>
 
             <div>
-              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-950">External Links</h2>
+              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-50">External Links</h2>
               <p>
                 This site contains links to third-party platforms such as GitHub, LinkedIn, and
                 external tool websites. Armaan is not responsible for the content or privacy
@@ -74,7 +74,7 @@ export default function Terms() {
             </div>
 
             <div>
-              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-950">Project Work</h2>
+              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-50">Project Work</h2>
               <p>
                 Case studies and project details are shared for informational and portfolio purposes
                 only. Specific client or employer details may be abstracted or omitted for
@@ -83,7 +83,7 @@ export default function Terms() {
             </div>
 
             <div>
-              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-950">Limitation of Liability</h2>
+              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-50">Limitation of Liability</h2>
               <p>
                 This site is provided on an &quot;as is&quot; basis. Armaan makes no warranties regarding
                 accuracy, availability, or fitness for a particular purpose. Use of this site is at

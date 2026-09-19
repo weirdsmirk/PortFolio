@@ -1,37 +1,37 @@
 :root {
   --font-size: 16px;
-  --background: #ffffff;
-  --foreground: oklch(0.145 0 0);
-  --card: #ffffff;
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #030213;
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.0058 264.53);
-  --secondary-foreground: #030213;
-  --muted: #ececf0;
-  --muted-foreground: #717182;
-  --accent: #e9ebef;
-  --accent-foreground: #030213;
+  --background: #0a0a0a;
+  --foreground: oklch(0.97 0 0);
+  --card: #111111;
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.2 0 0);
+  --popover-foreground: oklch(0.97 0 0);
+  --primary: #f4f4f4;
+  --primary-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.25 0.0058 264.53);
+  --secondary-foreground: #f4f4f4;
+  --muted: #1c1c1e;
+  --muted-foreground: #a3a3a3;
+  --accent: #222224;
+  --accent-foreground: #f4f4f4;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.1);
+  --border: rgba(255, 255, 255, 0.12);
   --input: transparent;
-  --input-background: #f3f3f5;
-  --switch-background: #cbced4;
+  --input-background: #17171a;
+  --switch-background: #3a3a3e;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --ring: oklch(0.708 0 0);
   --radius: 0.625rem;
   --font-serif: "Instrument Serif", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
-  --ink: #0a0a0a;
-  --paper: #ffffff;
-  --whisper: #6b6b6b;
-  --hair: rgba(0, 0, 0, 0.1);
-  --selection-bg: rgba(0, 0, 0, 0.78);
-  --selection-foreground: #f4f4f4;
+  --ink: #f5f5f4;
+  --paper: #0a0a0a;
+  --whisper: #a3a3a3;
+  --hair: rgba(255, 255, 255, 0.12);
+  --selection-bg: rgba(255, 255, 255, 0.85);
+  --selection-foreground: #0a0a0a;
 }
 
 @theme inline {
@@ -193,13 +193,13 @@
   }
 
   .skill-scale {
-    background-color: rgba(10, 10, 10, 0.045);
+    background-color: rgba(255, 255, 255, 0.05);
     background-image: repeating-linear-gradient(
       to right,
       transparent 0,
       transparent calc(20% - 1px),
-      rgba(10, 10, 10, 0.07) calc(20% - 1px),
-      rgba(10, 10, 10, 0.07) 20%
+      rgba(255, 255, 255, 0.08) calc(20% - 1px),
+      rgba(255, 255, 255, 0.08) 20%
     );
   }
 

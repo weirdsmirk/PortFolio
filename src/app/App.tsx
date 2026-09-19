@@ -115,7 +115,7 @@ export default function App() {
   return (
     <LayoutGroup id="portfolio-layout">
       <ErrorBoundary>
-        <div className="flex min-h-screen w-full flex-col bg-white text-neutral-950 transition-colors duration-300">
+        <div className="flex min-h-screen w-full flex-col bg-neutral-950 text-neutral-50 transition-colors duration-300">
           <ScrollToTop />
           <Nav />
           <main id="main-content" tabIndex={-1} className="flex flex-1 flex-col">

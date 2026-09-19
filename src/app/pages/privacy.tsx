@@ -10,7 +10,7 @@ const fade = {
 
 export default function Privacy() {
   return (
-    <section className="bg-white">
+    <section className="">
       <div className="mx-auto w-full px-6 pt-32 pb-24 md:px-12 md:pt-40 md:pb-32">
         <motion.div
           initial="hidden"
@@ -20,12 +20,12 @@ export default function Privacy() {
         >
           <motion.div
             variants={fade}
-            className="mb-12 flex items-center justify-between border-b border-black/10 pb-6"
+            className="mb-12 flex items-center justify-between border-b border-white/10 pb-6"
           >
             <span className="eyebrow">Legal</span>
             <Link
               to="/"
-              className="group flex items-center gap-2 eyebrow transition-colors hover:text-black"
+              className="group flex items-center gap-2 eyebrow transition-colors hover:text-white"
             >
               <ArrowLeft
                 size={14}
@@ -46,9 +46,9 @@ export default function Privacy() {
             Last updated September 2026
           </motion.p>
 
-          <motion.div variants={fade} className="space-y-8 font-sans text-base leading-relaxed text-neutral-700">
+          <motion.div variants={fade} className="space-y-8 font-sans text-base leading-relaxed text-neutral-300">
             <div>
-              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-950">Information Collected</h2>
+              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-50">Information Collected</h2>
               <p>
                 This portfolio does not collect personal information directly. No account creation,
                 contact forms, or data submission is required to browse the site. If you reach out
@@ -58,7 +58,7 @@ export default function Privacy() {
             </div>
 
             <div>
-              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-950">Cookies &amp; Local Storage</h2>
+              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-50">Cookies &amp; Local Storage</h2>
               <p>
                 This site uses browser localStorage solely for session recall — for example,
                 remembering a scroll position when returning from a project page or detecting
@@ -68,7 +68,7 @@ export default function Privacy() {
             </div>
 
             <div>
-              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-950">External Links</h2>
+              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-50">External Links</h2>
               <p>
                 External links to platforms such as GitHub, LinkedIn, Instagram, and third-party
                 tool websites are not operated by Armaan. Each platform has its own privacy policy
@@ -77,7 +77,7 @@ export default function Privacy() {
             </div>
 
             <div>
-              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-950">Changes</h2>
+              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-50">Changes</h2>
               <p>
                 This policy may be updated from time to time. Any changes will be reflected on this
                 page with a revised date. Continued use of the site after updates constitutes

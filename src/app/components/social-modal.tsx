@@ -51,14 +51,14 @@ export function SocialModal({ isOpen, label, onClose }: SocialModalProps) {
             exit={{ opacity: 0, y: 12, scale: 0.98 }}
             transition={{ duration: 0.4, ease: EASE }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-md border border-black/10 bg-white px-8 py-10 md:px-10"
+            className="relative w-full max-w-md border border-white/10 bg-neutral-900 px-8 py-10 md:px-10"
           >
             <h3 className="font-serif text-4xl md:text-5xl leading-[1.05] tracking-tight">
               Not really my space.{" "}
               <span className="italic-serif text-neutral-500">Focusing on the work instead.</span>
             </h3>
 
-            <p className="mt-6 text-[15px] leading-relaxed text-neutral-600">
+            <p className="mt-6 text-[15px] leading-relaxed text-neutral-300">
               I&apos;ve stepped back from the feed to pour everything into what I build. Email is
               the surest way to reach me — I read and reply to everything.
             </p>
@@ -67,14 +67,14 @@ export function SocialModal({ isOpen, label, onClose }: SocialModalProps) {
               <button
                 type="button"
                 onClick={onClose}
-                className="inline-flex items-center gap-3 rounded-full border border-black/15 px-6 py-3 font-sans text-sm tracking-tight transition-all duration-300 hover:border-black hover:bg-black hover:text-white active:scale-95 cursor-pointer"
+                className="inline-flex items-center gap-3 rounded-full border border-white/20 px-6 py-3 font-sans text-sm tracking-tight transition-all duration-300 hover:border-white hover:bg-white hover:text-black active:scale-95 cursor-pointer"
               >
                 Fair enough
               </button>
               <a
                 href={email?.href || "mailto:worksarmaan@gmail.com"}
                 onClick={onClose}
-                className="group inline-flex items-center gap-2 text-sm tracking-tight text-neutral-500 transition-colors hover:text-black"
+                className="group inline-flex items-center gap-2 text-sm tracking-tight text-neutral-400 transition-colors hover:text-white"
               >
                 worksarmaan@gmail.com
                 <ArrowRight

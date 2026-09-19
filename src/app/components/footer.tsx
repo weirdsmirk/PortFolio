@@ -14,8 +14,8 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-white">
-      <div className="border-t border-black/10">
+    <footer>
+      <div className="border-t border-white/10">
         <div className="mx-auto flex w-full flex-col gap-6 px-6 py-8 md:flex-row md:items-center md:justify-between md:px-12">
           <div className="flex flex-col gap-1">
             <span className="eyebrow">
@@ -27,29 +27,29 @@ export function Footer() {
           </div>
 
           <div className="flex items-center gap-8">
-            <span className="hidden h-4 w-px bg-black/15 md:block" />
+            <span className="hidden h-4 w-px bg-white/20 md:block" />
 
             <nav className="flex items-center gap-6">
               {legalLinks.map((l) => (
                 <Link
                   key={l.label}
                   to={l.href}
-                  className="eyebrow transition-colors hover:text-black"
+                  className="eyebrow transition-colors hover:text-white"
                 >
                   {l.label}
                 </Link>
               ))}
             </nav>
 
-            <span className="hidden h-4 w-px bg-black/15 md:block" />
+            <span className="hidden h-4 w-px bg-white/20 md:block" />
 
             <button
               type="button"
               onClick={scrollTop}
-              className="group flex items-center gap-2 eyebrow transition-colors hover:text-black"
+              className="group flex items-center gap-2 eyebrow transition-colors hover:text-white"
             >
               Back to top
-              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-black/15 transition-colors group-hover:bg-black group-hover:text-white">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/20 transition-colors group-hover:bg-white group-hover:text-black">
                 <ArrowUp
                   size={13}
                   className="transition-transform duration-300 group-hover:-translate-y-0.5"
