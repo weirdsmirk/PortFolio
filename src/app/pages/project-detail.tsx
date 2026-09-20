@@ -166,26 +166,6 @@ export default function ProjectDetail() {
             )}
           </div>
 
-          {/* Metadata Bar (below the visual) */}
-          <div className="mt-2 grid grid-cols-2 gap-6 border-b border-black/10 pb-5 sm:grid-cols-4">
-            <div>
-              <div className="eyebrow text-neutral-500 mb-1">Role</div>
-              <div className="text-sm font-medium text-neutral-900">{project.role}</div>
-            </div>
-            <div>
-              <div className="eyebrow text-neutral-500 mb-1">Timeline</div>
-              <div className="text-sm font-medium text-neutral-900">{project.year}</div>
-            </div>
-            <div>
-              <div className="eyebrow text-neutral-500 mb-1">Discipline</div>
-              <div className="text-sm font-medium text-neutral-900">{project.discipline}</div>
-            </div>
-            <div>
-              <div className="eyebrow text-neutral-500 mb-1">Deliverables</div>
-              <div className="text-sm font-medium text-neutral-900">{project.tools[0]} & More</div>
-            </div>
-          </div>
-
           {/* DESCRIPTION BELOW ALL THE IMAGES */}
           <div className="mx-auto max-w-3xl pt-6 pb-12">
             <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-neutral-950 leading-snug tracking-tight mb-5">
@@ -247,26 +227,6 @@ export default function ProjectDetail() {
                 </span>
               </div>
             )}
-          </div>
-
-          {/* Metadata Bar (below the visual) */}
-          <div className="mt-2 grid grid-cols-2 gap-6 border-b border-black/10 pb-5 sm:grid-cols-4">
-            <div>
-              <div className="eyebrow text-neutral-500 mb-1">Role</div>
-              <div className="text-sm font-medium text-neutral-900">{project.role}</div>
-            </div>
-            <div>
-              <div className="eyebrow text-neutral-500 mb-1">Timeline</div>
-              <div className="text-sm font-medium text-neutral-900">{project.year}</div>
-            </div>
-            <div>
-              <div className="eyebrow text-neutral-500 mb-1">Discipline</div>
-              <div className="text-sm font-medium text-neutral-900">{project.discipline}</div>
-            </div>
-            <div>
-              <div className="eyebrow text-neutral-500 mb-1">Deliverables</div>
-              <div className="text-sm font-medium text-neutral-900">{project.tools[0]} & More</div>
-            </div>
           </div>
 
           <div className="mx-auto max-w-3xl pt-6 pb-12">
