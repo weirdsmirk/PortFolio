@@ -24,7 +24,6 @@ export const projects: Project[] = [
     category: "Website",
     discipline: "Engineering",
     tools: ["React", "TypeScript", "SQLite", "TMDb"],
-    workCover: "/cinetrack.webp",
     gallery: [],
     link: "https://github.com/weirdpink/CIneTrack",
     caseStudy: "/project/p-cinetrack",
