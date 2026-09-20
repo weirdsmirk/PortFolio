@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from "react-router";
 import { LayoutGroup } from "motion/react";
 import { Nav } from "./components/nav";
 import { ErrorBoundary } from "./components/error-boundary";
+import { PageLoader } from "./components/page-loader";
 import { readSession, removeSession, writeSession } from "./browser";
 import Home from "./pages/home";
 import ProjectDetail from "./pages/project-detail";
@@ -116,6 +117,7 @@ export default function App() {
     <LayoutGroup id="portfolio-layout">
       <ErrorBoundary>
         <div className="flex min-h-screen w-full flex-col bg-white text-neutral-950 transition-colors duration-300">
+          <PageLoader />
           <ScrollToTop />
           <Nav />
           <main id="main-content" tabIndex={-1} className="flex flex-1 flex-col">

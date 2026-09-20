@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
 import { ArrowLeft, ArrowUpRight, CheckCircle2, Maximize2 } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { projects } from "../data";
 import { ImageWithFallback } from "../components/ImageWithFallback";
 import { ImageLightbox } from "../components/image-lightbox";
+import { PAGE_READY_EVENT } from "../components/page-loader";
 import { writeSession } from "../browser";
 import { EASE } from "../constants";
 
@@ -13,6 +14,21 @@ export default function ProjectDetail() {
   const reduceMotion = useReducedMotion();
   const project = projects.find((p) => p.id === id);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  // Hold the entrance reveal until PageLoader finishes background
+  // preloading (cover + workCover + gallery) and dismisses itself.
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    setReady(false);
+    const onReady = () => setReady(true);
+    window.addEventListener(PAGE_READY_EVENT, onReady);
+    // Safety: never hold the page longer than the loader's own ceiling.
+    const fallback = window.setTimeout(onReady, 5000);
+    return () => {
+      window.removeEventListener(PAGE_READY_EVENT, onReady);
+      window.clearTimeout(fallback);
+    };
+  }, [id]);
 
   const backToHome = () => writeSession("returningFromProject", "true");
 
@@ -49,11 +65,11 @@ export default function ProjectDetail() {
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{
         duration: reduceMotion ? 0 : 0.65,
         ease: EASE,
-        delay: reduceMotion ? 0 : 0.15,
+        delay: reduceMotion ? 0 : 0.05,
       }}
       className="mx-auto w-full px-6 py-24 md:px-12 md:py-36"
     >
