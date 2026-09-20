@@ -74,7 +74,7 @@ export function Work() {
   return (
     <section id="work" tabIndex={-1} className="w-full py-24 md:py-32 scroll-mt-16 md:scroll-mt-20">
       {/* Header Row */}
-      <div className="mx-auto w-full px-6 md:px-12 mb-12">
+      <div className="mx-auto w-full px-6 md:px-12 border-b border-black/10 pb-12 md:pb-16">
         <Reveal as="div" delay={0.1}>
           <h2 className="text-right font-serif text-[clamp(3.5rem,9vw,7.5rem)] leading-none tracking-tight">
             Work.

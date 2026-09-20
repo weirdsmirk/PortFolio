@@ -126,7 +126,7 @@ export function Skills() {
   return (
     <section id="skills" tabIndex={-1} className="bg-white scroll-mt-16 md:scroll-mt-20">
       <div className="mx-auto w-full px-6 py-24 md:px-12 md:py-32">
-        <div className="mb-12">
+        <div className="border-b border-black/10 pb-12 md:pb-16">
           <Reveal delay={0.1}>
             <h2 className="text-right font-serif text-[clamp(3.5rem,9vw,7.5rem)] leading-none tracking-tight">
               Skills.
