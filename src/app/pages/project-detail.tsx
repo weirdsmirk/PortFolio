@@ -58,7 +58,7 @@ export default function ProjectDetail() {
       className="mx-auto w-full px-6 py-24 md:px-12 md:py-36"
     >
       {/* Top Navigation & Header */}
-      <div className="mb-12 md:mb-16">
+      <div className="mb-8 md:mb-10">
         <div className="mb-12 flex items-center justify-between border-b border-black/10 pb-6">
           <span className="eyebrow">Case Study</span>
           <Link
@@ -77,26 +77,6 @@ export default function ProjectDetail() {
         <h1 className="italic-serif text-[clamp(2.75rem,7.5vw,6rem)] leading-[0.98] tracking-tight text-neutral-950">
           {project.title}
         </h1>
-
-        {/* Top Metadata Bar */}
-        <div className="mt-8 grid grid-cols-2 gap-6 border-y border-black/10 py-5 sm:grid-cols-4 md:mt-10">
-          <div>
-            <div className="eyebrow text-neutral-500 mb-1">Role</div>
-            <div className="text-sm font-medium text-neutral-900">{project.role}</div>
-          </div>
-          <div>
-            <div className="eyebrow text-neutral-500 mb-1">Timeline</div>
-            <div className="text-sm font-medium text-neutral-900">{project.year}</div>
-          </div>
-          <div>
-            <div className="eyebrow text-neutral-500 mb-1">Discipline</div>
-            <div className="text-sm font-medium text-neutral-900">{project.discipline}</div>
-          </div>
-          <div>
-            <div className="eyebrow text-neutral-500 mb-1">Deliverables</div>
-            <div className="text-sm font-medium text-neutral-900">{project.tools[0]} & More</div>
-          </div>
-        </div>
       </div>
 
       {/* ========================================================================= */}
@@ -105,7 +85,7 @@ export default function ProjectDetail() {
       {isDesign ? (
         <>
           {/* EXACT FILL STYLE IMAGE PLACEMENT (Full bleed filled box grid) */}
-          <div className="w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+6rem)] md:-ml-12 overflow-hidden border-y border-black/10 bg-black/10 my-10 md:my-14">
+          <div className="w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+6rem)] md:-ml-12 overflow-hidden border-y border-black/10 bg-black/10 mt-0 mb-10 md:mb-12">
             {project.category === "Poster" && (
               <div className="grid grid-cols-2">
                 {project.gallery.map((img, i) => {
@@ -186,6 +166,26 @@ export default function ProjectDetail() {
             )}
           </div>
 
+          {/* Metadata Bar (below the visual) */}
+          <div className="mt-2 grid grid-cols-2 gap-6 border-b border-black/10 pb-5 sm:grid-cols-4">
+            <div>
+              <div className="eyebrow text-neutral-500 mb-1">Role</div>
+              <div className="text-sm font-medium text-neutral-900">{project.role}</div>
+            </div>
+            <div>
+              <div className="eyebrow text-neutral-500 mb-1">Timeline</div>
+              <div className="text-sm font-medium text-neutral-900">{project.year}</div>
+            </div>
+            <div>
+              <div className="eyebrow text-neutral-500 mb-1">Discipline</div>
+              <div className="text-sm font-medium text-neutral-900">{project.discipline}</div>
+            </div>
+            <div>
+              <div className="eyebrow text-neutral-500 mb-1">Deliverables</div>
+              <div className="text-sm font-medium text-neutral-900">{project.tools[0]} & More</div>
+            </div>
+          </div>
+
           {/* DESCRIPTION BELOW ALL THE IMAGES */}
           <div className="mx-auto max-w-3xl pt-6 pb-12">
             <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-neutral-950 leading-snug tracking-tight mb-5">
@@ -219,7 +219,7 @@ export default function ProjectDetail() {
           {/* bg-clip-padding keeps the dark backdrop out from under the border so the
               top/bottom hairlines read as a subtle light grey instead of near-black */}
           {/* Frame ratio matches the 16:10 cover art so the screenshot is shown uncropped */}
-          <div className="w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+6rem)] md:-ml-12 overflow-hidden border-y border-black/10 bg-neutral-950 bg-clip-padding aspect-[16/10] my-10 md:my-14">
+          <div className="w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+6rem)] md:-ml-12 overflow-hidden border-y border-black/10 bg-neutral-950 bg-clip-padding aspect-[16/10] mt-0 mb-10 md:mb-12">
             {engineeringCover ? (
               <div
                 onClick={() => handleOpenLightbox(0)}
@@ -247,6 +247,26 @@ export default function ProjectDetail() {
                 </span>
               </div>
             )}
+          </div>
+
+          {/* Metadata Bar (below the visual) */}
+          <div className="mt-2 grid grid-cols-2 gap-6 border-b border-black/10 pb-5 sm:grid-cols-4">
+            <div>
+              <div className="eyebrow text-neutral-500 mb-1">Role</div>
+              <div className="text-sm font-medium text-neutral-900">{project.role}</div>
+            </div>
+            <div>
+              <div className="eyebrow text-neutral-500 mb-1">Timeline</div>
+              <div className="text-sm font-medium text-neutral-900">{project.year}</div>
+            </div>
+            <div>
+              <div className="eyebrow text-neutral-500 mb-1">Discipline</div>
+              <div className="text-sm font-medium text-neutral-900">{project.discipline}</div>
+            </div>
+            <div>
+              <div className="eyebrow text-neutral-500 mb-1">Deliverables</div>
+              <div className="text-sm font-medium text-neutral-900">{project.tools[0]} & More</div>
+            </div>
           </div>
 
           <div className="mx-auto max-w-3xl pt-6 pb-12">
