@@ -218,7 +218,8 @@ export default function ProjectDetail() {
           {/* Main Hero Showcase */}
           {/* bg-clip-padding keeps the dark backdrop out from under the border so the
               top/bottom hairlines read as a subtle light grey instead of near-black */}
-          <div className="w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+6rem)] md:-ml-12 overflow-hidden border-y border-black/10 bg-neutral-950 bg-clip-padding aspect-[16/9] my-10 md:my-14">
+          {/* Frame ratio matches the 16:10 cover art so the screenshot is shown uncropped */}
+          <div className="w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+6rem)] md:-ml-12 overflow-hidden border-y border-black/10 bg-neutral-950 bg-clip-padding aspect-[16/10] my-10 md:my-14">
             {engineeringCover ? (
               <div
                 onClick={() => handleOpenLightbox(0)}
