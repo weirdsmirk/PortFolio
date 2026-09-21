@@ -5,6 +5,7 @@ import { Nav } from "./components/nav";
 import { ErrorBoundary } from "./components/error-boundary";
 import { PageLoader } from "./components/page-loader";
 import { readSession, removeSession, writeSession } from "./browser";
+import { scrollToHashTarget, scrollToPositionWithRetry } from "./scroll";
 import Home from "./pages/home";
 import ProjectDetail from "./pages/project-detail";
 import NotFound from "./pages/not-found";
@@ -49,7 +50,6 @@ function ScrollToTop() {
   }, [pathname]);
 
   useLayoutEffect(() => {
-    let frame: number | undefined;
     let timer: number | undefined;
     const scrollTo = (top: number) => window.scrollTo(0, top);
 
@@ -70,30 +70,35 @@ function ScrollToTop() {
     } else if (pathname === "/") {
       if (hash) {
         const targetId = hash.slice(1);
+        // Delay past the mobile-menu collapse (~350ms) and the
+        // return-from-project loader (~890ms) so the scroll isn't fired
+        // while `body { overflow: hidden }` is still in effect.
+        const delay =
+          prevPathname.current.startsWith("/project/") ||
+          document.body.style.overflow === "hidden"
+            ? 450
+            : 120;
         timer = window.setTimeout(() => {
-          const target = document.getElementById(targetId);
-          target?.scrollIntoView({
-            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-              ? "auto"
-              : "smooth",
-            block: "start",
-          });
-        }, 60);
+          scrollToHashTarget(targetId);
+        }, delay);
       } else if (prevPathname.current.startsWith("/project/")) {
         isRestoring.current = true;
         writeSession("returningFromProject", "true");
         const position = Number.parseInt(readSession("homeScrollPos") ?? "", 10);
 
         if (Number.isFinite(position) && position > 0) {
-          scrollTo(position);
-          frame = window.requestAnimationFrame(() => scrollTo(position));
+          scrollToPositionWithRetry(position);
+        } else {
+          scrollTo(0);
         }
 
         timer = window.setTimeout(() => {
-          if (Number.isFinite(position) && position > 0) scrollTo(position);
+          if (Number.isFinite(position) && position > 0) {
+            if (Math.abs(window.scrollY - position) > 48) scrollTo(position);
+          }
           isRestoring.current = false;
           removeSession("returningFromProject");
-        }, 120);
+        }, 1200);
       } else {
         scrollTo(0);
       }
@@ -103,7 +108,6 @@ function ScrollToTop() {
 
     prevPathname.current = pathname;
     return () => {
-      if (frame) window.cancelAnimationFrame(frame);
       if (timer) window.clearTimeout(timer);
       isRestoring.current = false;
     };

@@ -1,9 +1,10 @@
 import { useEffect, useState, useCallback, useRef } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Menu, X } from "lucide-react";
 
 import { EASE } from "../constants";
+import { scrollToHashTarget, scrollToTopSmooth } from "../scroll";
 
 const links = [
   { label: "Work", href: "/#work" },
@@ -18,6 +19,7 @@ export function Nav() {
   const lastScrollY = useRef(0);
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isNavigating = useRef(false);
   const scrollEndTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -99,36 +101,35 @@ export function Nav() {
         lastScrollY.current = window.scrollY;
       }, 800);
 
-      if (location.pathname === "/") {
-        if (href === "/" || href === "") {
-          e.preventDefault();
-          window.scrollTo({
-            top: 0,
-            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-              ? "auto"
-              : "smooth",
-          });
-          window.history.pushState(null, "", "/");
+      if (href === "/" || href === "") {
+        e.preventDefault();
+        if (location.pathname !== "/") {
+          // Back to home top — let the router change location so the back
+          // button, ScrollToTop and the route-close effect stay in sync.
+          navigate("/");
+        }
+        scrollToTopSmooth();
+        return;
+      }
+
+      if (href.startsWith("/#")) {
+        e.preventDefault();
+        const targetId = href.slice(2);
+        if (location.pathname !== "/") {
+          // Cross-page section link (e.g. from a case study): navigate home
+          // first; ScrollToTop performs the actual scroll once home mounts.
+          navigate(href);
           return;
         }
-
-        if (href.startsWith("/#")) {
-          e.preventDefault();
-          const targetId = href.slice(2);
-          const target = document.getElementById(targetId);
-          if (target) {
-            target.scrollIntoView({
-              behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-                ? "auto"
-                : "smooth",
-              block: "start",
-            });
-            window.history.pushState(null, "", href);
-          }
-        }
+        // Same-page anchor: ScrollToTop doesn't re-run on hash changes
+        // triggered via pushState, so scroll directly. scrollToHashTarget
+        // waits for the mobile menu's scroll-lock to release before
+        // scrolling, which fixes section links on phones.
+        scrollToHashTarget(targetId);
+        navigate(href);
       }
     },
-    [location.pathname],
+    [location.pathname, navigate],
   );
 
   return (
