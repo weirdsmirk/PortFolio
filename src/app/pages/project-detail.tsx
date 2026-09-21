@@ -103,7 +103,7 @@ export default function ProjectDetail() {
           {/* EXACT FILL STYLE IMAGE PLACEMENT (Full bleed filled box grid) */}
           <div className="w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+6rem)] md:-ml-12 overflow-hidden border-y border-black/10 bg-black/10 mt-0 mb-10 md:mb-12">
             {project.category === "Poster" && (
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2">
                 {project.gallery.map((img, i) => {
                   const isLight = i % 2 === 0;
 
@@ -136,7 +136,7 @@ export default function ProjectDetail() {
             )}
 
             {project.category === "Logo" && (
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2">
                 {project.gallery.map((img, i) => (
                   <div
                     key={i}
