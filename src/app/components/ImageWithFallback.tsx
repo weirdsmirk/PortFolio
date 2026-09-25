@@ -25,9 +25,9 @@ export function ImageWithFallback(props: ImgHTMLAttributes<HTMLImageElement>) {
         data-original-url={src}
       >
         <div className="pointer-events-none flex max-w-full flex-col items-center gap-4 px-6 py-10">
-          <span className="eyebrow !text-white/40">Image not uploaded</span>
+          <span className="eyebrow !text-white/40">Project image</span>
           <span className="italic-serif text-[clamp(1.5rem,5vw,2.75rem)] leading-[1.08] tracking-tight text-white">
-            {alt || "Uploading soon."}
+            Images are not uploaded yet.
           </span>
         </div>
       </div>

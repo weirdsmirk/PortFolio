@@ -217,29 +217,22 @@ export default function ProjectDetail() {
           {/* Frame ratio matches the 16:10 cover art so the screenshot is shown uncropped */}
           <div className="w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+6rem)] md:-ml-12 overflow-hidden border-y border-black/10 bg-neutral-950 bg-clip-padding aspect-[16/10] mt-0 mb-10 md:mb-12">
             {engineeringCover ? (
-              <div
-                onClick={() => handleOpenLightbox(0)}
-                className="group relative h-full w-full cursor-default md:cursor-zoom-in"
-              >
+              <div className="relative h-full w-full">
                 <ImageWithFallback
                   src={engineeringCover}
                   alt={project.title}
-                  className="h-full w-full object-cover transition-transform duration-500 md:group-hover:scale-[1.01]"
+                  className="h-full w-full object-cover"
                   width={1400}
                   height={788}
                 />
-                <div className="pointer-events-none absolute bottom-4 right-4 hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 md:group-hover:opacity-100">
-                  <Maximize2 size={14} />
-                </div>
               </div>
             ) : (
               <div
-                aria-hidden="true"
                 className="flex h-full w-full flex-col justify-between bg-neutral-900 p-6 text-white md:p-12"
               >
-                <span className="eyebrow text-neutral-400">Project visual</span>
-                <span className="font-serif text-[clamp(2.5rem,7vw,7rem)] leading-none tracking-tight">
-                  Visual pending.
+                <span className="eyebrow text-neutral-400">Project image</span>
+                <span className="font-serif text-[clamp(2rem,5vw,5rem)] leading-[1.05] tracking-tight">
+                  Images are not uploaded yet.
                 </span>
               </div>
             )}
@@ -318,8 +311,8 @@ export default function ProjectDetail() {
 
       {/* Full-screen Image Lightbox Modal */}
       <ImageLightbox
-        isOpen={lightboxIndex !== null}
-        images={lightboxImages}
+        isOpen={isDesign && lightboxIndex !== null}
+        images={isDesign ? lightboxImages : []}
         currentIndex={lightboxIndex ?? 0}
         title={project.title}
         onClose={() => setLightboxIndex(null)}
