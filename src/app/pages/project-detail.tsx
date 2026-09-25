@@ -9,6 +9,17 @@ import { PAGE_READY_EVENT } from "../components/page-loader";
 import { writeSession } from "../browser";
 import { EASE } from "../constants";
 
+function ImagePlaceholder() {
+  return (
+    <div className="flex h-full w-full flex-col justify-between bg-neutral-900 p-6 text-white md:p-12">
+      <span className="eyebrow text-neutral-400">Project image</span>
+      <span className="font-serif text-[clamp(2rem,5vw,5rem)] leading-[1.05] tracking-tight">
+        Images are not uploaded yet.
+      </span>
+    </div>
+  );
+}
+
 export default function ProjectDetail() {
   const { id } = useParams();
   const reduceMotion = useReducedMotion();
@@ -135,49 +146,9 @@ export default function ProjectDetail() {
               </div>
             )}
 
-            {project.category === "Logo" && (
-              <div className="grid grid-cols-1 sm:grid-cols-2">
-                {project.gallery.map((img, i) => (
-                  <div
-                    key={i}
-                    onClick={() => handleOpenLightbox(i)}
-                    className="group relative overflow-hidden bg-neutral-950 aspect-square w-full p-8 sm:p-14 flex items-center justify-center cursor-default md:cursor-zoom-in"
-                  >
-                    <ImageWithFallback
-                      src={img}
-                      alt={`${project.title} mark 0${i + 1}`}
-                      className="max-h-full max-w-full object-contain transition-transform duration-500 md:group-hover:scale-105"
-                      width={400}
-                      height={400}
-                    />
-                    <div className="pointer-events-none absolute bottom-3 right-3 hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 md:group-hover:opacity-100">
-                      <Maximize2 size={14} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {project.category === "Brand Identity" && (
-              <div className="grid grid-cols-1 sm:grid-cols-2">
-                {project.gallery.map((img, i) => (
-                  <div
-                    key={i}
-                    onClick={() => handleOpenLightbox(i)}
-                    className="group relative overflow-hidden bg-neutral-950 aspect-[4/3] w-full cursor-default md:cursor-zoom-in"
-                  >
-                    <ImageWithFallback
-                      src={img}
-                      alt={`${project.title} asset 0${i + 1}`}
-                      className="h-full w-full object-cover transition-transform duration-500 md:group-hover:scale-[1.02]"
-                      width={1000}
-                      height={750}
-                    />
-                    <div className="pointer-events-none absolute bottom-3 right-3 hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 md:group-hover:opacity-100">
-                      <Maximize2 size={14} />
-                    </div>
-                  </div>
-                ))}
+            {(project.category === "Logo" || project.category === "Brand Identity") && (
+              <div className="aspect-square w-full md:aspect-[4/3]">
+                <ImagePlaceholder />
               </div>
             )}
           </div>
@@ -227,14 +198,7 @@ export default function ProjectDetail() {
                 />
               </div>
             ) : (
-              <div
-                className="flex h-full w-full flex-col justify-between bg-neutral-900 p-6 text-white md:p-12"
-              >
-                <span className="eyebrow text-neutral-400">Project image</span>
-                <span className="font-serif text-[clamp(2rem,5vw,5rem)] leading-[1.05] tracking-tight">
-                  Images are not uploaded yet.
-                </span>
-              </div>
+              <ImagePlaceholder />
             )}
           </div>
 
