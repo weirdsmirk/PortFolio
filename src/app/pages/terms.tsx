@@ -58,9 +58,21 @@ export default function Terms() {
             <div>
               <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-950">Intellectual Property</h2>
               <p>
-                All designs, code, branding, and content displayed on this site are the intellectual
-                property of Armaan unless otherwise noted. You may not reproduce, distribute, or
-                create derivative works without prior written consent.
+                The visual design, branding, graphics, and written content displayed on
+                this site are the intellectual property of Armaan unless otherwise noted.
+                You may not reproduce, distribute, or create derivative works of them
+                without prior written consent.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="mb-3 font-serif text-2xl tracking-tight text-neutral-950">Source Code</h2>
+              <p>
+                The source code of this site is open source and released under the MIT
+                License, so you are welcome to fork it and build your own version. The
+                content and design assets listed above are excluded from that license and
+                remain reserved. Third-party components and media keep their original
+                licenses, listed in the project&apos;s attributions file.
               </p>
             </div>
 

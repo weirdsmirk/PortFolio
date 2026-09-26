@@ -2,6 +2,7 @@
   "name": "armaan-portfolio",
   "private": true,
   "version": "1.0.0",
+  "license": "MIT",
   "type": "module",
   "engines": {
     "node": ">=18.18"

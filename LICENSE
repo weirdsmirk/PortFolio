@@ -1,0 +1,44 @@
+MIT License
+
+Copyright (c) 2026 Armaan Verma
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Content and assets are not covered by this license
+
+The MIT License above covers the **source code** of this repository. It does
+not cover the design work, branding, or written content, which remain the
+exclusive property of the copyright holder. All rights reserved:
+
+- `public/posters/` — design work
+- `public/cinetrack.webp` — logo and branding
+- `public/favicon.svg`
+- `public/resume.pdf`
+- `src/app/data.ts` — portfolio copy, case studies, and project descriptions
+- The visual design, layout, and typography of the site
+
+You may use, fork, and modify the code freely, including for commercial sites
+of your own. You may not reproduce, redistribute, or create derivative works of
+the items listed above, or present them as your own, without prior written
+permission.
+
+Third-party components and media used by this project remain under their own
+licenses. See [ATTRIBUTIONS.md](ATTRIBUTIONS.md).

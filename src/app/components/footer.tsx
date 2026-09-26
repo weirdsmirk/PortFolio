@@ -19,10 +19,10 @@ export function Footer() {
         <div className="mx-auto flex w-full flex-col gap-6 px-6 py-8 md:flex-row md:items-center md:justify-between md:px-12">
           <div className="flex flex-col gap-1">
             <span className="eyebrow">
-              &copy; {new Date().getFullYear()} Armaan — All rights reserved
+              &copy; {new Date().getFullYear()} Armaan
             </span>
             <span className="text-[13px] text-neutral-500">
-              Designed &amp; built end to end.
+              Designed &amp; built end to end. Code on GitHub under MIT.
             </span>
           </div>
 

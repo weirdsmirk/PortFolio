@@ -72,3 +72,20 @@ npm run check     # run checks and build
 * `public/` contains static assets.
 
 This is a personal portfolio project built to represent both my development and design work.
+
+## License
+
+The source code is released under the [MIT License](LICENSE). Fork it, use it, build
+your own version.
+
+The design work, branding, graphics, and written content are **not** covered by that
+license and remain all rights reserved. That covers:
+
+* `public/posters/`
+* `public/cinetrack.webp`
+* `public/favicon.svg`
+* `public/resume.pdf`
+* `src/app/data.ts` and the visual design of the site
+
+If you fork this, swap in your own content and assets. Third-party components and
+media keep their original licenses, listed in [ATTRIBUTIONS.md](ATTRIBUTIONS.md).

@@ -2,10 +2,10 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router";
 import App from "./app/App.tsx";
 import "./styles/index.css";
-import { initSecurity } from "./security";
+import { initLicenseNotice } from "./license-notice";
 
-// Initialize anti-theft and DevTools protections
-initSecurity();
+// Show the licensing notice in the console
+initLicenseNotice();
 
 if ("scrollRestoration" in window.history) {
   window.history.scrollRestoration = "manual";
